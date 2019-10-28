@@ -173,7 +173,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Amita', 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 20px 0 15px;
@@ -371,7 +371,7 @@ pre,
 }
 pre,
 code {
-  font-family: consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
+  font-family: 'Roboto Slab', consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
 }
 code {
   background: #eee;
@@ -954,7 +954,7 @@ pre .javascript .function {
 }
 .site-title {
   display: inline-block;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'kaiti', 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 1.375em;
   font-weight: normal;
   line-height: 1.5;
@@ -1144,7 +1144,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #52a1ff;
+  background: #ff3657;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2405,3 +2405,39 @@ hr {
 .sub-menu .menu-item {
   display: inline-block;
 }
+body {
+  background: url("/images/blogbk.jpg") no-repeat;
+/* 背景图垂直、水平均居中 */
+  background-position: center center;
+/* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+  background-attachment: fixed;
+/* 让背景图基于容器大小伸缩 */
+  background-size: cover;
+/* 设置背景颜色，背景图加载过程中会显示背景色 */
+  background-color: rgba(0,0,0,0.1);
+}
+.sidebar {
+  background: url("/images/sidebar.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.sidebar p,
+.sidebar span,
+.sidebar a {
+  color: #e75001;
+}
+.content {
+  border-radius: 20px;
+  padding: 30px 60px 30px 60px;
+  background: rgba(255,255,255,0.9) none repeat scroll !important;
+}
+/*
+.header {
+          background: url(/images/名称.jpg)
+          background:rgba(颜色rgb,透明度) none repeat scroll !important;
+        }
+.footer {
+          background:rgba(颜色rgb,透明度) none repeat scroll !important;
+        }
+*/
