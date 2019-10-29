@@ -1144,7 +1144,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f72562;
+  background: #f52bff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2415,6 +2415,7 @@ body {
   background-size: cover;
 /* 设置背景颜色，背景图加载过程中会显示背景色 */
   background-color: rgba(0,0,0,0.1);
+  color: #000;
 }
 .sidebar {
   background: url("/images/sidebar.jpg");
@@ -2430,8 +2431,8 @@ body {
 .content {
   border-radius: 20px;
   padding: 30px 60px 30px 60px;
-  background: rgba(255,255,255,0.8) none repeat scroll !important;
-  width: 100%;
+  background: rgba(255,255,255,0.9) none repeat scroll !important;
+  width: 90%;
 }
 /*
 .header {
