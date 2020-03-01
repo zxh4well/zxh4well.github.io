@@ -207,7 +207,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Amita', 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 20px 0 15px;
@@ -370,28 +370,31 @@ td {
   margin-top: 3px;
 }
 .toggle.toggle-arrow .toggle-line-first {
+  left: 50%;
   top: 2px;
-  transform: rotate(-45deg);
-  width: 50%;
-}
-.toggle.toggle-arrow .toggle-line-middle {
-  width: 90%;
-}
-.toggle.toggle-arrow .toggle-line-last {
-  top: -2px;
   transform: rotate(45deg);
   width: 50%;
 }
-.toggle.toggle-close .toggle-line-first {
-  top: 5px;
+.toggle.toggle-arrow .toggle-line-middle {
+  left: 2px;
+  width: 90%;
+}
+.toggle.toggle-arrow .toggle-line-last {
+  left: 50%;
+  top: -2px;
   transform: rotate(-45deg);
+  width: 50%;
+}
+.toggle.toggle-close .toggle-line-first {
+  transform: rotate(-45deg);
+  top: 5px;
 }
 .toggle.toggle-close .toggle-line-middle {
   opacity: 0;
 }
 .toggle.toggle-close .toggle-line-last {
-  top: -5px;
   transform: rotate(45deg);
+  top: -5px;
 }
 .highlight,
 pre {
@@ -402,7 +405,7 @@ pre {
 }
 pre,
 code {
-  font-family: 'Roboto Slab', consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
+  font-family: consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
 }
 code {
   background: #eee;
@@ -999,7 +1002,7 @@ pre .javascript .function {
 }
 .site-title {
   display: inline-block;
-  font-family: 'kaiti', 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 1.375em;
   font-weight: normal;
   line-height: 1.5;
@@ -1153,7 +1156,6 @@ pre .javascript .function {
   margin: 0 auto;
   max-width: 96px;
   padding: 2px;
-  border-radius: 50%;
 }
 .site-author-name {
   color: #f5f5f5;
@@ -1181,7 +1183,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ebff75;
+  background: #4b131f;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1961,13 +1963,6 @@ pre .javascript .function {
 #qr p {
   text-align: center;
 }
-.post-copyright {
-  background: var(--card-bg-color);
-  border-left: 3px solid #ff2a2a;
-  list-style: none;
-  margin: 2em 0 0;
-  padding: 0.5em 1em;
-}
 .category-all-page .category-all-title {
   text-align: center;
 }
@@ -2144,13 +2139,6 @@ ul.breadcrumb li + li:last-child {
 }
 .tag-cloud a:hover {
   color: #222 !important;
-}
-mjx-container[jax="CHTML"][display="true"],
-.has-jax {
-  overflow: auto hidden;
-}
-mjx-container + br {
-  display: none;
 }
 hr {
   height: 2px;
@@ -2351,24 +2339,10 @@ hr {
   border-bottom-color: var(--link-hover-color);
 }
 .sidebar {
-  right: -320px;
+  left: -320px;
 }
 .sidebar.sidebar-active {
-  right: 0;
-}
-.sidebar-toggle,
-.back-to-top {
-  left: auto;
-  right: 30px;
-}
-@media (max-width: 991px) {
-  .sidebar-toggle,
-  .back-to-top {
-    right: 20px;
-  }
-}
-.book-mark-link {
-  left: 30px;
+  left: 0;
 }
 .sidebar {
   width: 320px;
