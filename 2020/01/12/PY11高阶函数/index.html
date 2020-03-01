@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_Bart_Simpson_Skate_32px.net.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_Bart_Simpson_Skate_16px.net.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|kaiti:300,300italic,400,400italic,700,700italic|Amita:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="高阶函数接收函数作为参数，或者将函数作为返回值的函数是高阶函数。 当我们使用一个函数作为参数时，实际上是将指定的代码传递进了目标函数 12345678910111213141516171819202122232425262728293031323334353637383940414243444546def Detection(func,lst) :    &apos;&apos;&apos;    函数作用：">
+<meta name="keywords" content="Python进阶">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PY之高阶函数">
+<meta property="og:url" content="https://zxh4well.github.io/2020/01/12/PY11高阶函数/index.html">
+<meta property="og:site_name" content="安好">
+<meta property="og:description" content="高阶函数接收函数作为参数，或者将函数作为返回值的函数是高阶函数。 当我们使用一个函数作为参数时，实际上是将指定的代码传递进了目标函数 12345678910111213141516171819202122232425262728293031323334353637383940414243444546def Detection(func,lst) :    &apos;&apos;&apos;    函数作用：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-01T11:23:39.998Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PY之高阶函数">
+<meta name="twitter:description" content="高阶函数接收函数作为参数，或者将函数作为返回值的函数是高阶函数。 当我们使用一个函数作为参数时，实际上是将指定的代码传递进了目标函数 12345678910111213141516171819202122232425262728293031323334353637383940414243444546def Detection(func,lst) :    &apos;&apos;&apos;    函数作用：">
+
+<link rel="canonical" href="https://zxh4well.github.io/2020/01/12/PY11高阶函数/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>PY之高阶函数 | 安好</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">安好</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zxh4well.github.io/2020/01/12/PY11高阶函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/TP.jpg">
+      <meta itemprop="name" content="IF">
+      <meta itemprop="description" content="心之所向 素履以往">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安好">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PY之高阶函数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-12 10:36:32" itemprop="dateCreated datePublished" datetime="2020-01-12T10:36:32+08:00">2020-01-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PY/" itemprop="url" rel="index">
+                    <span itemprop="name">PY</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h1><p>接收函数作为参数，或者将函数作为返回值的函数是高阶函数。</p>
+<pre><code>当我们使用一个函数作为参数时，实际上是将指定的代码传递进了目标函数
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Detection</span><span class="params">(func,lst)</span> :</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    函数作用：</span></span><br><span class="line"><span class="string">            筛选传入的列表中的元素是否是偶数？如果是偶数，看是否大于5？大于则保留。</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">            func    判偶函数</span></span><br><span class="line"><span class="string">            list    列表</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># new a list</span></span><br><span class="line">    new_list = []</span><br><span class="line">    <span class="comment"># 循环列表、检查判断</span></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> lst :</span><br><span class="line">        <span class="keyword">if</span> num &gt; <span class="number">5</span> :</span><br><span class="line">            <span class="keyword">if</span> func(num):</span><br><span class="line">                new_list.append(num)</span><br><span class="line">    <span class="comment"># 返回new_list</span></span><br><span class="line">    <span class="keyword">return</span> new_list</span><br><span class="line"></span><br><span class="line">lst = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(num)</span> :</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    作用：</span></span><br><span class="line"><span class="string">        判偶函数</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">        num（数字）</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> num%<span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">L = Detection(func,lst)</span><br><span class="line"></span><br><span class="line">print(L)<span class="comment"># [6, 8, 10]</span></span><br><span class="line"></span><br><span class="line">help(Detection)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Help on function Detection in module __main__:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Detection(func, lst)</span></span><br><span class="line"><span class="comment">#     函数作用：</span></span><br><span class="line"><span class="comment">#             筛选传入的列表中的元素是否是偶数？如果是偶数，看是否大于5？大于则保留。</span></span><br><span class="line"><span class="comment">#     参数：</span></span><br><span class="line"><span class="comment">#             func    判偶函数</span></span><br><span class="line"><span class="comment">#             list    列表</span></span><br></pre></td></tr></table></figure>
+<h2 id="文档字符串"><a href="#文档字符串" class="headerlink" title="文档字符串"></a>文档字符串</h2><p>help()是Python中的内置函数，通过help()函数可以查询python中的函数的用法</p>
+<pre><code>    语法：help(函数对象)
+    help(print) # 获取print()函数的使用说明
+</code></pre><p>文档字符串（doc str）  </p>
+<p>在定义函数时，可以在函数内部编写文档字符串，文档字符串就是函数的说明，编写了文档字符串时，就可以通过help()函数来查看函数的说明。</p>
+<p>文档字符串非常简单，其实直接在函数的第一行写一个字符串就是文档字符串。</p>
+<pre><code>上文中使用  &#39;&#39;&#39; &#39;&#39;&#39;  围起来的就是是文档字符串。
+</code></pre><p>过滤器<code>filter()</code>可以从序列中过滤出符合条件的元素，保存到一个新的序列中</p>
+<pre><code>参数：
+    1.函数，根据该函数来过滤序列（可迭代的结构）
+    2.需要过滤的序列（可迭代的结构）
+返回值：
+    过滤后的新序列（可迭代的结构）
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 虑值函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(i)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> i % <span class="number">3</span> == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">lst = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">r = filter(fn4,lst)</span><br><span class="line"></span><br><span class="line">print(list(r)) <span class="comment"># [3, 6]</span></span><br></pre></td></tr></table></figure>
+<pre><code>⚠：虑值函数返回的必须是符合条件的元素。
+
+func是作为参数传递进filter()函数中的，而func实际上只有一个作用，
+就是作为filter()的参数，filter()调用完毕以后，func就已经没用了。
+</code></pre><h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><p>在上面我们使用filter的时候需要传递一个函数作为参数，为此我们需要特地编写一个函数，但这个函数的功能却十分单调且简单，那么有没有什么简单的方法来达到相同的功能呢，这就需要用到匿名函数了。  </p>
+<pre><code>匿名函数 lambda 函数表达式 （语法糖）  
+</code></pre><p>lambda函数表达式专门用来创建一些简单的函数，是函数创建的又一种方式</p>
+<pre><code> 语法：lambda 参数列表 : 返回值
+
+ 匿名函数一般都是作为参数使用，其他地方一般不会使用。
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 也可以将匿名函数赋值给一个变量，一般不会这么做</span></span><br><span class="line">AF = <span class="keyword">lambda</span> a,b : a + b</span><br><span class="line"></span><br><span class="line">AF(<span class="number">12</span>,<span class="number">25</span>) </span><br><span class="line"></span><br><span class="line">print(AF(<span class="number">12</span>,<span class="number">25</span>))<span class="comment">#  37</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在filter中的使用方法</span></span><br><span class="line">lst = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">r = filter(<span class="keyword">lambda</span> num : num % <span class="number">3</span> == <span class="number">0</span>,lst)</span><br><span class="line">print(list(r))<span class="comment"># [3, 6]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#作为函数可不可以调用呢？答案显然是可以的</span></span><br><span class="line">(<span class="keyword">lambda</span> a,b : a + b)(<span class="number">10</span>,<span class="number">20</span>)</span><br><span class="line">print((<span class="keyword">lambda</span> a,b : a + b)(<span class="number">10</span>,<span class="number">20</span>))<span class="comment"># 30</span></span><br><span class="line">AF = ((<span class="keyword">lambda</span> a,b : a + b)(<span class="number">10</span>,<span class="number">20</span>))</span><br><span class="line">print(AF)<span class="comment"># 30</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>sort与sorted的区别：</p>
+<pre><code>  sort()
+      该方法用来对列表中的元素进行排序
+  sort()方法默认是直接比较列表中的元素的大小，可以接收一个关键字参数 ， key
+  key需要一个函数作为参数，当设置了函数作为参数每次都会以列表中的
+  一个元素作为参数来调用函数，并且使用函数的返回值来比较元素的大小
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">l = [<span class="string">'bb'</span>,<span class="string">'aaaa'</span>,<span class="string">'c'</span>,<span class="string">'ddddddddd'</span>,<span class="string">'fff'</span>]</span><br><span class="line">l.sort()</span><br><span class="line">print(l)<span class="comment"># ['aaaa', 'bb', 'c', 'ddddddddd', 'fff']</span></span><br><span class="line">l.sort(key=len)</span><br><span class="line">print(l)<span class="comment"># ['c', 'bb', 'fff', 'aaaa', 'ddddddddd']</span></span><br><span class="line"></span><br><span class="line">l = [<span class="number">2</span>,<span class="number">5</span>,<span class="string">'1'</span>,<span class="number">3</span>,<span class="string">'6'</span>,<span class="string">'4'</span>]</span><br><span class="line">l.sort(key=int)</span><br><span class="line">print(l)<span class="comment"># ['1', 2, 3, '4', 5, '6']</span></span><br></pre></td></tr></table></figure>
+<pre><code>  sorted()  
+      这个函数和sort()的用法基本一致，但是sorted()可以对任意的序列进行排序
+  并且使用sorted()排序不会影响原来的对象，而是返回一个新对象
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">l = [<span class="number">2</span>,<span class="number">5</span>,<span class="string">'1'</span>,<span class="number">3</span>,<span class="string">'6'</span>,<span class="string">'4'</span>]</span><br><span class="line"><span class="comment"># l = "123765816742634781"</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'排序前:'</span>,l)<span class="comment"># 排序前: [2, 5, '1', 3, '6', '4']</span></span><br><span class="line">print(sorted(l,key=int))<span class="comment"># ['1', 2, 3, '4', 5, '6']</span></span><br><span class="line">print(<span class="string">'排序后:'</span>,l)<span class="comment"># 排序后: [2, 5, '1', 3, '6', '4']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="闭包与装饰器"><a href="#闭包与装饰器" class="headerlink" title="闭包与装饰器"></a>闭包与装饰器</h2><h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>将函数作为返回值返回，也是一种高阶函数，这种高阶函数我们也称为叫做闭包，通过闭包可以创建一些只有当前函数能访问的变量，因此可以将一些私有的数据藏到的闭包中。</p>
+<pre><code>形成闭包的条件
+    ① 函数嵌套
+    ② 将内部函数作为返回值返回
+    ③ 内部函数必须要使用到外部函数的变量
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">闭包示例：</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></span><br><span class="line">    a = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 函数内部再定义一个函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'我是函数func'</span> , a)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将内部函数 inner作为返回值返回   </span></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line">r = func()</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">r = func()结果说明</span></span><br><span class="line"><span class="string">    r是一个函数，是调用func()后返回的函数，该函数是在func()内部定义，所以并不是全局函数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    但是该函数总是能访问到func()函数内的变量（内层可以访问外层函数域变量）</span></span><br><span class="line"><span class="string">'''</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">r() <span class="comment"># 我是函数func 10</span></span><br></pre></td></tr></table></figure>
+<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//装饰器模板</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decorator</span><span class="params">(decor_func)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    函数作用：用来对其他函数进行扩展</span></span><br><span class="line"><span class="string">    参数说明：decor_func : 需要被扩展的对象（函数）</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 装饰函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">new_func</span><span class="params">(*args,**kwargs)</span>:</span> </span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        装饰函数和被扩展对象的参数因该是一样的</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        print(<span class="string">'开始执行被装饰对象'</span>)<span class="comment"># 附加功能</span></span><br><span class="line">        decor_func(*args,**kwargs)<span class="comment">#调用被扩展对象</span></span><br><span class="line">        print(<span class="string">'被装饰对象执行结束'</span>)</span><br><span class="line">    <span class="keyword">return</span> new_func</span><br><span class="line"></span><br><span class="line"><span class="meta">@decorator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'你好！'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行say()函数：</span></span><br><span class="line">say();</span><br><span class="line"><span class="comment"># 开始执行被装饰对象</span></span><br><span class="line"><span class="comment"># 你好！</span></span><br><span class="line"><span class="comment"># 被装饰对象执行结束</span></span><br></pre></td></tr></table></figure>
+<p>函数也是一个对象，函数里可以嵌套函数，这是函数的特点。装饰器的思想就是利用函数式编程的方法，用函数来扩展代码功能，实质是函数的嵌套，装饰器函数一般做这三件事：</p>
+<pre><code>1、接收一个函数作为参数，该函数其实就是需要被包装的对象（如上面的decor_func）
+2、嵌套一个装饰函数，该装饰函数需要接受被包装的函数的参数（就是decor_func函数的参数），并且会执行附加功能（如果需要的话）
+2.1 其实也可以直接在定义的时候给装饰函数定义两个任意参数，以优化装饰函数
+3、返回装饰函数
+</code></pre><p>调用装饰器的方法其实有两种，一种就是函数的嵌套调用————实话实说太过麻烦；第二种是python的语法糖<code>@</code>（使用方法如上所示）。因为装饰器是一个函数，所以<code>@</code>后面跟着的函数名，是随着定义的装饰器的不同而动态变化的。</p>
+<p>简单说明一下<code>*args</code>和<code>**kwargs</code>：<br><code>*args</code>是可变参数，仅仅使用<code>*args</code>是无法包含所有参数情况的，关键字参数就不能了；为了能兼容关键字参数，我们还需要加上 <code>**kwargs</code>。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>IF
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zxh4well.github.io/2020/01/12/PY11高阶函数/" title="PY之高阶函数">https://zxh4well.github.io/2020/01/12/PY11高阶函数/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python进阶/" rel="tag"><i class="fa fa-tag"></i> Python进阶</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/31/PY10函数/" rel="next" title="PY之函数">
+                  <i class="fa fa-chevron-left"></i> PY之函数
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/01/17/PY12变量2.0/" rel="prev" title="PY变量2.0">
+                  PY变量2.0 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#高阶函数"><span class="nav-number">1.</span> <span class="nav-text">高阶函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文档字符串"><span class="nav-number">1.1.</span> <span class="nav-text">文档字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匿名函数"><span class="nav-number">1.2.</span> <span class="nav-text">匿名函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包与装饰器"><span class="nav-number">1.3.</span> <span class="nav-text">闭包与装饰器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包"><span class="nav-number">1.3.1.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰器"><span class="nav-number">1.3.2.</span> <span class="nav-text">装饰器</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="IF"
+    src="/images/TP.jpg">
+  <p class="site-author-name" itemprop="name">IF</p>
+  <div class="site-description" itemprop="description">心之所向 素履以往</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:811226051@qq.com" title="E-Mail &rarr; mailto:811226051@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dear zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+
+
+<!--在上下两段code中添加了注释，修改了尾页面显示-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

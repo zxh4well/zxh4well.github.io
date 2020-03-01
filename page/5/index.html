@@ -12,13 +12,43 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|kaiti:300,300italic,400,400italic,700,700italic|Amita:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+
 <script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zxh4well.github.io","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
 
   <meta name="description" content="心之所向 素履以往">
 <meta property="og:type" content="website">
@@ -38,13 +68,17 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
   <title>安好</title>
   
+
+
 
 
 
@@ -82,14 +116,6 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
   <div class="site-meta">
 
     <div>
@@ -101,8 +127,11 @@
     </div>
   </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 </div>
@@ -116,14 +145,9 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章</a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -131,9 +155,19 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
         <li class="menu-item menu-item-sitemap">
 
     <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
 
   </li>
   </ul>
@@ -162,10 +196,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zxh4well.github.io/2019/11/12/Python21-条件语句/">
+    <link itemprop="mainEntityOfPage" href="https://zxh4well.github.io/2019/11/12/PY4数据类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/TP.jpg">
       <meta itemprop="name" content="IF">
       <meta itemprop="description" content="心之所向 素履以往">
     </span>
@@ -176,7 +210,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/12/Python21-条件语句/" class="post-title-link" itemprop="url">Python21_条件语句</a>
+            <a href="/2019/11/12/PY4数据类型/" class="post-title-link" itemprop="url">PY基础数据类型</a>
         </h1>
 
         <div class="post-meta">
@@ -185,9 +219,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-12 15:45:38 / 修改时间：17:39:48" itemprop="dateCreated datePublished" datetime="2019-11-12T15:45:38+08:00">2019-11-12</time>
+              <time title="创建时间：2019-11-12 15:43:32" itemprop="dateCreated datePublished" datetime="2019-11-12T15:43:32+08:00">2019-11-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -195,7 +228,9 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                  <a href="/categories/PY/" itemprop="url" rel="index">
+                    <span itemprop="name">PY</span>
+                  </a>
                 </span>
             </span>
 
@@ -210,77 +245,230 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="条件判断语句"><a href="#条件判断语句" class="headerlink" title="条件判断语句"></a>条件判断语句</h1><p>Python代码在执行时是按照自上向下顺序执行的。</p>
-<h2 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a><code>if语句</code></h2><h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><pre><code>    if 条件表达式 :
-        代码块 
-</code></pre><h3 id="执行的流程"><a href="#执行的流程" class="headerlink" title="执行的流程"></a>执行的流程</h3><p>执行的流程：<br>if语句在执行时，会先对条件表达式进行求值判断</p>
+          <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>Python中能直接处理的基础数据类型包含数值（整数、浮点数、复数）、字符串、布尔值、空值。<br>此外还包括列表、元组、集合、字典、自定义数据类型等较为复杂的数据类型。</p>
+<h2 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h2><p>在Python中所有的整数都是int类型，Python中的整数的大小没有限制，可以是一个无限大的整数<br>所有的小数都是float类型，对浮点数进行运算时，可能会得到一个不精确的结果。进行数值计算的<br>时候，python可以作为科学计算器，且数值的大小范围无限制</p>
+<pre><code>如果数字的长度过大，可以使用下划线作为分隔符   
+c = 123_456_789
+10进制的数字不能以0开头  
+d = 0123 （ × 运行会报错）  
+</code></pre><p>进制：计算机一般使用二进制进行运算和数据的存储，有时16进制表示数据更加方便，所以计算机<br>也使用16进制来表示数据。10进制对人是友善的。其他进制的整数，只要是数字打印时一定是以十<br>进制的形式显示的。</p>
+<pre><code>进制数：
+    二进制 0b开头  
+    num = 0b10   #代表10
+    八进制 0o开头    
+    num = 0o10   #代表8
+    十六进制 0x开头  
+    num = 0x10   #代表16
+</code></pre><p>通过运算符可以对数字进行运算，并且可以保证整数运算的精确，当然浮点数的误差无法避免</p>
+<h3 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h3><pre><code>整数指代的就是数学中的整数：
+        正数    45、300
+整数     零     0
+        负数    -1、-100
+</code></pre><h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><pre><code>小数就是浮点数，浮点数的小数点位置是可变的，
+    比如，1.23x109和12.3x108是完全相等的。
+    · 浮点数可以用数学写法，如1.23，3.14，-9.01，等等。也可以用科学计数法表示，把10用e替代，
+1.23x109就是1.23e9，或者12.3e8，0.000012可以写成1.2e-5，等等。
+    · 整数和浮点数在计算机内部存储的方式是不同的，整数运算永远是精确的（除法难道也是精确的？
+是的！），而浮点数运算则可能会有四舍五入的误差。
+</code></pre><h3 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h3><pre><code>复数是在复数域中使用的数值，超出了实数的范围，与实数并列。
+            实数  -1、0、30
+    数  
+            复数   2+3j、1-2j、-1-1j
+</code></pre><p>复数的序数单位不再是<code>i</code>而是<code>j</code>，虚部如果是1也不能省略，否者报错。</p>
+<h3 id="计算："><a href="#计算：" class="headerlink" title="计算："></a>计算：</h3><p>我们可以通过数学表达式或者是Python的内置函数来进行数值计算。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#内置函数计算</span></span><br><span class="line">abs(x)</span><br><span class="line"><span class="comment">#绝对值（absolute）</span></span><br><span class="line"><span class="comment"># 返回一个数的绝对值。 参数可以是一个整数或浮点数。 如果参数是复数，则返回它的模。</span></span><br><span class="line"><span class="comment"># 请先忽略本句： 如果 x 定义了 __abs__()，则 abs(x) 将返回 x.__abs__()。</span></span><br><span class="line">print(abs(<span class="number">1</span>+<span class="number">1j</span>))<span class="comment">#1.4142135623730951</span></span><br><span class="line"></span><br><span class="line">max(arg1, arg2, *args[, key])</span><br><span class="line"><span class="comment"># 返回可迭代对象中最大的元素，或者返回两个及以上实参中最大的。</span></span><br><span class="line">a = <span class="number">30</span></span><br><span class="line">b = <span class="number">40</span></span><br><span class="line">c = <span class="number">10</span></span><br><span class="line">print(max(a,b,c))<span class="comment">#40</span></span><br><span class="line">list = [<span class="number">20</span>,<span class="number">30</span>,<span class="number">10</span>,<span class="number">20</span>]</span><br><span class="line">print(max(list))<span class="comment">#30</span></span><br><span class="line"></span><br><span class="line">min(arg1, arg2, *args[, key])</span><br><span class="line"><span class="comment"># 返回可迭代对象中最小的元素，或者返回两个及以上实参中最小的。</span></span><br><span class="line">min函数的用法类同于max，只是返回的值是最小值。</span><br><span class="line"></span><br><span class="line">sum(iterable, /, start=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 从 start 开始自左向右对 iterable(可迭代) 的项求和并返回总计值。 iterable 的项通常为数字，而 start 值则不允许为字符串。</span></span><br><span class="line">list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">sum(list)<span class="comment">#10</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Python运算符"><a href="#Python运算符" class="headerlink" title="Python运算符"></a>Python运算符</h3><p>运算符可以对一个值或多个值进行运算或各种操作</p>
+<pre><code>运算符的分类：  
+    1.算术运算符  
+    2.赋值运算符  
+    3.比较运算符（关系运算符）  
+    4.逻辑运算符  
+    5.条件运算符（三元运算符）
+</code></pre><ul>
+<li><p>算术运算符  </p>
+<pre><code> +   加法运算符（字符串：进行拼串操作）    
+ —   减法运算符    
+ *   乘法运算符（字符串和数字相乘，就会将字符串重复指定次数）  
+ /   除法运算符，运算时结果总会返回一个浮点类型  
+ //  整除，保留计算后的整数位并返回
+ **  幂运算，求幂运算  
+ %   取模，求两个数相除的模
+</code></pre><ul>
+<li><p>赋值运算符<code>=</code></p>
+<p>   等号右侧的值赋值给等号左侧的变量<br>   简写规则：   </p>
+<pre><code>   +=
+       a += 5   相当于 a = a + 5  
+   -=
+       a -= 5   相当于 a = a - 5   
+   *= 
+       a *= 5   相当于 a = a * 5
+   **=      
+       a **= 5  相当于 a = a ** 5   
+   /=
+       a /= 5   相当于 a = a / 5   
+   //=   
+       a //= 5  相当于 a = a // 5   
+   %=   
+       a %= 5   相当于 a = a % 5   
+</code></pre></li>
+</ul>
+</li>
+</ul>
 <ul>
-<li>如果为True，则执行if后的语句</li>
-<li>如果为False，则不执行，直接跳过该if语句   </li>
+<li>关系运算符  </li>
 </ul>
-<p>默认情况下，if语句只会控制紧随其后的那条语句，如果希望if可以控制多条语句，<br>则可以在if后跟着一个代码块   </p>
-<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><ul>
-<li><p>代码块中保存着一组代码，同一个代码块中的代码，要么都执行要么都不执行。  </p>
-</li>
-<li><p>代码块是一种为代码分组的机制。  </p>
-</li>
-<li><p>如果要编写代码块，语句就不能紧随在:后边，而是要写在下一行  </p>
-</li>
-<li><p>代码块以缩进开始，直到代码恢复到之前的缩进级别时结束  </p>
-</li>
-<li><p>缩进有两种方式，一种是使用tab键，一种是使用空格（四个） </p>
+<p>关系运算符用来比较两个值之间的关系，总会返回一个布尔值；如果成立，返回True，否则返回False</p>
+<pre><code>&gt;       比较左侧值是否大于右侧值  
+&gt;=      比较左侧的值是否大于或等于右侧的值  
+&lt;       比较左侧值是否小于右侧值  
+&lt;=      比较左侧的值是否小于或等于右侧的值  
+==      比较两个对象的值是否相等  
+!=      比较两个对象的值是否不相等（ 相等和不等比较的是对象的值，而不是id ）       
+is      比较两个对象是否是同一个对象，比较的是对象的id  
+is not  比较两个对象是否不是同一个对象，比较的是对象的id   
+
+补充：在Python中可以对两个字符串进行大于（等于）或小于（等于）的运算`
+    * 当对字符串进行比较时，实际上比较的是字符串的Unicode编码  
+    * 比较两个字符串的Unicode编码时，是逐位比较的  
+    * 利用该特性可以对字符串按照字母顺序进行排序    
+
+注意：如果不希望比较两个字符串的Unicode编码，则需要将其转换为数字（`int()`）然后再比较
+</code></pre><ul>
+<li>逻辑运算符</li>
+</ul>
+<p>逻辑运算符主要用来做一些逻辑判断   </p>
+<pre><code>not 逻辑非  可以对符号右侧的值进行非运算
+    - 对于布尔值，非运算会对其进行取反操作，True变False，False变True
+    - 对于非布尔值，非运算会先将其转换为布尔值，然后再取反  
+
+and 逻辑与  可以对符号两侧的值进行与运算,与运算是找False的
+    只有在符号两侧的值都为True时，才会返回True，只要有一个False就返回False
+Python中的与运算是短路的与，如果第一个值为False，则不再看第二个值
+
+or 逻辑或  可以对符号两侧的值进行或运算,或运算是找True的
+    或运算两个值中只要有一个True，就会返回True
+Python中的或运算是短路的或，如果第一个值为True，则不再看第二个值
+</code></pre><ul>
+<li>非布尔值的与或运算</li>
+</ul>
+<p>当我们对非布尔值进行与或运算时，Python会将其当做布尔值运算，最终会返回原值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">1</span> <span class="keyword">and</span> <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>* 与运算的规则  
+    - 与运算是找False的，如果第一个值是False，则不看第二个值  
+    - 如果第一个值是False，则直接返回第一个值，否则返回第二个值
+* 或运算的规则  
+    - 或运算是找True的，如果第一个值是True，则不看第二个值  
+    - 如果第一个值是True，则直接返回第一个值，否则返回第二个值   
+</code></pre><ul>
+<li>条件运算符（三元运算符）<br>语法： 语句1 if 条件表达式 else 语句2 </li>
+</ul>
+<p><img src="https://i.loli.net/2019/11/09/DPKMQxqSrub4wXc.png" alt="画图.PNG"></p>
+<pre><code>执行流程：    
+条件运算符在执行时，会先对条件表达式进行求值判断  
+    - 如果判断结果为True，则执行语句1，并返回执行结果  
+    - 如果判断结果为False，则执行语句2，并返回执行结果     
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取a和b之间的较大值</span></span><br><span class="line">max = a <span class="keyword">if</span> a &gt; b <span class="keyword">else</span> b</span><br><span class="line">print(max)</span><br></pre></td></tr></table></figure>
+<h4 id="运算符的优先级"><a href="#运算符的优先级" class="headerlink" title="运算符的优先级"></a>运算符的优先级</h4><p>和数学中一样，在Python运算也有优先级，比如先乘除,后加减。运算符的优先级可以根据优先级的表格来查询。在表格中位置越靠下的运算符优先级越高，优先级越高的越优先计算,如果优先级一样则自左向右计算。</p>
+<p>在开发中如果遇到优先级不清楚的,则可以通过小括号来改变运算顺序。</p>
+<pre><code>注意：  
+    * and（与）的优先级高于 or（或）  
+    * 逻辑运算符可以连着使用
+        result = 1 &lt; 2 &lt; 3 # 相当于 1 &lt; 2 and 2 &lt; 3
+        需要注意是对于中间数进行比较
+</code></pre><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串是以单引号<code>&#39;</code>或双引号<code>&quot;</code>括起来的任意文本，比如<code>&#39;abc&#39;，&quot;xyz&quot;</code>等等。<code>&#39;&#39;</code>或<code>&quot;&quot;</code>本身只是一种表示方式，不是字符串的一部分，因此，字符串<code>&#39;abc&#39;</code>只有<code>a</code>，<code>b</code>，<code>c</code>这3个字符。如果’本身也是一个字符，那就可以用””括起来，比如<code>&quot;I&#39;m OK&quot;</code>  </p>
+<pre><code>长字符串
+</code></pre><ul>
+<li><p>单引号和双引号不能跨行使用,可以使用<code>\</code>来达到跨行的目的</p>
+<pre><code>  s = &#39;锄禾日当午，\  
+  汗滴禾下土，\  
+  谁知盘中餐，\  
+  粒粒皆辛苦&#39;    
+  输出：锄禾日当午，汗滴禾下土，谁知盘中餐，粒粒皆辛苦  
+</code></pre></li>
+<li><p>使用三重引号来表示一个长字符串（ <code>&#39;&#39;&#39;</code>或<code>&quot;&quot;&quot;</code>  ）</p>
+<pre><code>  三重引号可以换行，并且会保留字符串中的格式  
+      s = &#39;&#39;&#39;锄禾日当午，  
+      汗滴禾下土，  
+      谁知盘中餐，  
+      粒粒皆辛苦&#39;&#39;&#39;  
+      输出：   
+      锄禾日当午，  
+      汗滴禾下土，  
+      谁知盘中餐，  
+      粒粒皆辛苦            
+</code></pre></li>
+</ul>
+<hr>
+<pre><code>转义字符
+</code></pre><ul>
+<li><p>可以使用 <code>\</code> 作为转义字符；通过转义字符，可以在字符串中使用一些特殊的内容   </p>
+<pre><code>例子：  
+  \&#39; 表示 &#39; (就是&#39;号) 
+  \&quot; 表示 &quot; (就是&quot;号)
+  \t 表示制表符  
+  \n 表示换行符  
+  \\ 表示 \ (反斜杠) 
+  \uxxxx 表示Unicode编码  
+
+  s = &#39;\u2250&#39;  
+  print(s) # ≐
+  s = &#39;\&quot;你好\&quot;&#39;   
+  print(s) # ”你好“  
+</code></pre></li>
+</ul>
+<hr>
+<pre><code>格式化字符串
+</code></pre><ul>
+<li><p>字符串间进行加法运算，会自动将两个字符串拼接为一个</p>
+<pre><code>  a = &#39;abc&#39; + &#39;123&#39;   
+  print(a)# abc1232   
+  字符串不能和其他的类型进行加法运算，如果做了会出现异常 TypeError: must be str, not int   
+</code></pre></li>
+<li><p>在创建字符串时，可以在字符串中指定占位符  </p>
+<pre><code>  %s 字符串占位符            b = &#39;Hello %s&#39;%&#39;你好&#39;       eg:hello 你好
+  %f 浮点数占位符            b = &#39;hello %.2f&#39;%123.456    eg:hello 123.45  （默认则输出小数点后六位）
+  %d 整数占位符              b = &#39;hello %d&#39;%123.95       eg:hello 123
+
+  -当有多个占位符时，可以使用括号（）来将待输出量括起来
+  print(&quot;%d\n%.3f\n%s\n%s\n%s\n%s&quot; % (n, f, s1, s2, s3, s4))
+  特殊格式简介：
+          %3s    意味着：字符串最小长度为3，不足用空格左补齐
+          %3.5s  意味着：字符串的长度限制在3-5之间
+          %.2f   意味着：小数点后保留两位小数
+</code></pre></li>
+<li><p>通过在字符串前添加一个f来创建一个格式化字符串；在格式化字符串中可以直接嵌入变量  </p>
+<pre><code>  a = &#39;boy&#39;   
+  b = &#39;132&#39;   
+  c = f&#39;love{a}{b}&#39;  
+  print(c)  
+  输出：loveboy132  
+  print(f&#39;str = {c}&#39;)  
+  输出：str = loveboy132  
+</code></pre></li>
+<li><p>可以使用<code>*</code>来复制字符串</p>
+<pre><code>  &gt;&gt;&gt; a = &#39;12ds&#39;
+  &gt;&gt;&gt; a = a*3
+  &gt;&gt;&gt; a
+      &#39;12ds12ds12ds&#39;
+</code></pre><h2 id="布尔值（bool）和空值（None）"><a href="#布尔值（bool）和空值（None）" class="headerlink" title="布尔值（bool）和空值（None）"></a>布尔值（bool）和空值（None）</h2><p>布尔值一共有两个 True 和 False，True表示真 False表示假<br>| bool|类型 |值 |<br>|—-|—-|—-|<br>|ture|int|1|<br>|false|int|0|<br>布尔值可以看作整型，True就相当于1，False就相当于0 </p>
 </li>
 </ul>
-<blockquote>
-<p>Python代码中使用的缩进方式必须统一,Python的官方文档中推荐我们使用空格来缩进  </p>
-</blockquote>
-<h3 id="使用逻辑运算符来连接多个条件"><a href="#使用逻辑运算符来连接多个条件" class="headerlink" title="使用逻辑运算符来连接多个条件"></a>使用逻辑运算符来连接多个条件</h3><p>如果希望所有条件同时满足，则需要使用and  </p>
-<p>如果希望只要有一个条件满足即可，则需要使用or<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> num &gt; <span class="number">10</span> <span class="keyword">and</span> num &lt; <span class="number">20</span> :</span><br><span class="line">    print(<span class="string">'num比10大,num比20小！'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="number">10</span> &lt; num &lt; <span class="number">20</span> :</span><br><span class="line">    print(<span class="string">'num比10大,num比20小！'</span>)</span><br></pre></td></tr></table></figure></p>
-<p>10 &lt; num &lt; 20<br>这才Python中是特有的，其使用的习惯是中间对两边进行比较。<br>例如：<br>    10 &lt; num &lt; 20<br>    可以分解成为：10 &lt; num ; num &lt; 20  </p>
-<h2 id="if-else"><a href="#if-else" class="headerlink" title="if-else"></a><code>if-else</code></h2><pre><code>    if-else语句
-    语法： 
-        if 条件表达式 :
-            代码块
-        else :
-            代码块
-    执行流程：
-    if-else语句在执行时，先对if后的条件表达式进行求值判断
-        如果为True，则执行if后的代码块
-        如果为False，则执行else后的代码块
-</code></pre><h2 id="if-elif-else语句"><a href="#if-elif-else语句" class="headerlink" title="if-elif-else语句"></a><code>if-elif-else语句</code></h2><pre><code>if-elif-else语句
-
-    语法：
-        if 条件表达式 :
-            代码块
-        elif 条件表达式 :
-            代码块
-        elif 条件表达式 :
-            代码块
-        else :
-            代码块
-
-    执行流程：
-            if-elif-else语句在执行时，会自上向下依次对条件表达式进行求值判断
-                如果表达式的结果为True，则执行当前代码块，然后语句结束
-                如果表达式的结果为False，则继续向下判断，直到找到True为止
-                如果所有的表达式都是False，则执行else后的代码块
-</code></pre><p><em>if-elif-else中只会有一个代码块会执行</em></p>
-<h2 id="input-函数"><a href="#input-函数" class="headerlink" title="input()函数"></a><code>input()</code>函数</h2><blockquote>
-<p>作用：<code>input()</code>函数用来获取用户的输入</p>
-</blockquote>
-<pre><code>    input()调用后，程序会立即暂停，等待用户输入
-        用户输入完内容以后，点击回车程序才会继续向下执行
-        用户输入完成以后，其所输入的的内容会以返回值得形式返回
-</code></pre><blockquote>
-<p>注意：<code>input()</code>的返回值是一个字符串</p>
-</blockquote>
-<pre><code>    input()函数中可以设置一个字符串作为参数，这个字符串将会作为提示文字显示
-        a = input(&#39;请输入任意内容：&#39;)
-        print(&#39;用户输入的内容是:&#39;,a)
-</code></pre><blockquote>
-<p><code>input()</code>也可以用于暂时阻止程序结束</p>
-</blockquote>
-
+<p>布尔值可以用<code>and</code>、<code>or</code>和<code>no</code>t运算 </p>
+<pre><code>and运算是与运算，只有所有都为True，and运算结果才是True
+or运算是或运算，只要其中有一个为True，or运算结果就是True
+not运算是非运算，它是一个单目运算符，把True变成False，False变成True
+</code></pre><p>布尔值经常用在条件判断句中</p>
+<pre><code>if age &gt;= 18:
+print(&#39;adult&#39;)
+else:
+print(&#39;teenager&#39;)   
+</code></pre><p>空值<code>None</code>：专门用来表示不存在，空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值</p>
+<h2 id="类型检查"><a href="#类型检查" class="headerlink" title="类型检查"></a>类型检查</h2><p>通过类型检查函数 type()，可以检查变量的类型  </p>
+<pre><code>print(type(b))
+print(type(1)) # &lt;class &#39;int&#39;&gt;
+print(type(1.5)) # &lt;class &#39;float&#39;&gt;
+print(type(True)) # &lt;class &#39;bool&#39;&gt;
+print(type(&#39;hello&#39;))  # &lt;class &#39;str&#39;&gt;
+print(type(None)) # &lt;class &#39;NoneType&#39;&gt;
+</code></pre>
       
     </div>
 
@@ -299,35 +487,13 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
 
           </div>
           
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
 
         </div>
           
@@ -357,6 +523,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="IF"
+    src="/images/TP.jpg">
   <p class="site-author-name" itemprop="name">IF</p>
   <div class="site-description" itemprop="description">心之所向 素履以往</div>
 </div>
@@ -365,7 +533,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -378,11 +546,16 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:811226051@qq.com" title="E-Mail &rarr; mailto:811226051@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
 
 
 
@@ -409,11 +582,11 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Dear zhang</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
   </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.2
-  </div>
+
+
+<!--在上下两段code中添加了注释，修改了尾页面显示-->
 
         
 
@@ -424,6 +597,11 @@
 
 
 
+
+
+
+
+        
       </div>
     </footer>
   </div>
@@ -453,6 +631,13 @@
 
 
 
+
+
+
+
+  
+
+  
 
   
 

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_Bart_Simpson_Skate_32px.net.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_Bart_Simpson_Skate_16px.net.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|kaiti:300,300italic,400,400italic,700,700italic|Amita:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="字典dict字典也是Python内置的一种数据结构，称为映射（mapping），使用键-值（key-value）存储，具有极快的查找速度。具备快速查找能力的原因是，字典在存储数据的时候都是根据key算出value的存放位置，这样，取的时候直接根据key拿到value。这种操作方法称为hash查找。所以，dict内部存放的顺序和key放入的顺序是没有关系的。也因此，一个key只能对应于一个value">
+<meta name="keywords" content="Python基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PY之字典">
+<meta property="og:url" content="https://zxh4well.github.io/2019/12/09/PY7字典/index.html">
+<meta property="og:site_name" content="安好">
+<meta property="og:description" content="字典dict字典也是Python内置的一种数据结构，称为映射（mapping），使用键-值（key-value）存储，具有极快的查找速度。具备快速查找能力的原因是，字典在存储数据的时候都是根据key算出value的存放位置，这样，取的时候直接根据key拿到value。这种操作方法称为hash查找。所以，dict内部存放的顺序和key放入的顺序是没有关系的。也因此，一个key只能对应于一个value">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-01T11:20:38.999Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PY之字典">
+<meta name="twitter:description" content="字典dict字典也是Python内置的一种数据结构，称为映射（mapping），使用键-值（key-value）存储，具有极快的查找速度。具备快速查找能力的原因是，字典在存储数据的时候都是根据key算出value的存放位置，这样，取的时候直接根据key拿到value。这种操作方法称为hash查找。所以，dict内部存放的顺序和key放入的顺序是没有关系的。也因此，一个key只能对应于一个value">
+
+<link rel="canonical" href="https://zxh4well.github.io/2019/12/09/PY7字典/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>PY之字典 | 安好</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">安好</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zxh4well.github.io/2019/12/09/PY7字典/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/TP.jpg">
+      <meta itemprop="name" content="IF">
+      <meta itemprop="description" content="心之所向 素履以往">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安好">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PY之字典
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-09 18:04:32" itemprop="dateCreated datePublished" datetime="2019-12-09T18:04:32+08:00">2019-12-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PY/" itemprop="url" rel="index">
+                    <span itemprop="name">PY</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="字典dict"><a href="#字典dict" class="headerlink" title="字典dict"></a>字典dict</h1><p>字典也是Python内置的一种数据结构，称为映射（mapping），使用键-值（key-value）存储，具有极快的查找速度。具备快速查找能力的原因是，字典在存储数据的时候都是根据key算出value的存放位置，这样，取的时候直接根据key拿到value。这种操作方法称为hash查找。所以，dict内部存放的顺序和key放入的顺序是没有关系的。也因此，一个key只能对应于一个value，多次对一个key放入value，后面的值会把前面的值冲掉（覆盖）。</p>
+<pre><code>和list比较，dict有以下几个特点：
+    查找和插入的速度极快，不会随着key的增加而变慢；
+    需要占用大量的内存，内存浪费多（由字典的机制决定）
+而list相反：
+    查找和插入的时间随着元素的增加而增加；
+    占用空间小，浪费内存很少
+所以，dict是用空间来换取时间的一种方法。
+
+    在程序中，通常时间和空间是两个对立的方面，时间消耗少，内存开销就大；内存开销小，时间花费的
+就多。通常情况下空间换时间的情况较多。
+
+字典的作用和列表类似，都是用来存储对象的容器。
+    列表存储数据的性能很好，但是查询数据的性能的很差； 在字典中每一个元素都有一个唯一的名字，
+通过这个唯一的名字可以快速查找到指定元素。在查询元素时，字典的效率是非常快的。
+</code></pre><p>在字典中可以保存多个对象， 这个对象，我们称其为值（value）。每个对象都会有一个唯一的名字。这个唯一的名字，称为键（key），通过key可以快速的查询value. </p>
+<pre><code>key:value  
+    所以字典，我们也称为叫做键值对（key-value）结构；每个字典中都可以有多个键值对，而每一个键值对，我们称其为一项（item）
+</code></pre><ul>
+<li><p>可以使用 {} 来创建字典</p>
+<pre><code>  语法：  
+      {key:value,key:value,key:value} 
+  说明：     
+      字典的值可以是任意对象  
+      字典的键可以是任意的‘不可变对象’（int、str、bool、tuple ...），一般都会使用str
+      字典的键是不能重复的，如果出现重复，后边的会覆盖前边的
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;&#125; <span class="comment"># 创建了一个空字典</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建了一个数据字典</span></span><br><span class="line">d = &#123;<span class="string">'name'</span>:<span class="string">'孙悟空'</span> , <span class="string">'age'</span>:<span class="number">18</span> , <span class="string">'gender'</span>:<span class="string">'男'</span> , <span class="string">'name'</span>:<span class="string">'sunwukong'</span>&#125;</span><br><span class="line"></span><br><span class="line">d = &#123;</span><br><span class="line"><span class="string">'name'</span>:<span class="string">'孙悟空'</span> , </span><br><span class="line"><span class="string">'age'</span>:<span class="number">18</span> , </span><br><span class="line"><span class="string">'gender'</span>:<span class="string">'男'</span> , </span><br><span class="line"><span class="string">'name'</span>:<span class="string">'sunwukong'</span></span><br><span class="line">&#125;</span><br><span class="line">print(d , type(d))<span class="comment">#&#123;'name': 'sunwukong', 'age': 18, 'gender': '男'&#125; &lt;class 'dict'&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  根据键来获取值  </p>
+<pre><code>  print(d[&#39;name&#39;],d[&#39;age&#39;],d[&#39;gender&#39;])
+</code></pre><p>  如果使用了字典中不存在的键，会报错KeyError  </p>
+<pre><code>  print(d[&#39;hello&#39;]) KeyError: &#39;hello&#39;
+</code></pre></li>
+<li><p>使用 dict()函数来创建字典</p>
+<p>  每一个参数都是一个键值对，参数名就是键，参数名就是值。<br>  （这种方式创建的字典，key都是字符串）</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d = dict(name=<span class="string">'孙悟空'</span>,age=<span class="number">18</span>,gender=<span class="string">'男'</span>) </span><br><span class="line">print(d)<span class="comment">#&#123;'name': '孙悟空', 'age': 18, 'gender': '男'&#125;</span></span><br></pre></td></tr></table></figure>
+<p>  该函数也可以将一个包含有双值子序列的序列转换为字典  </p>
+<pre><code>  双值序列，序列中只有两个值，[1,2] (&#39;a&#39;,3) &#39;ab&#39;; 子序列，如果序列中的元素也是序列，那么我们就称这个元素为子序列，[(1,2),(3,5)]
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d = dict([(<span class="string">'name'</span>,<span class="string">'孙悟饭'</span>),(<span class="string">'age'</span>,<span class="number">18</span>)])</span><br><span class="line">print(d , type(d))<span class="comment">#&#123;'name': '孙悟饭', 'age': 18&#125; &lt;class 'dict'&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>len() 获取字典中键值对的个数</p>
+<pre><code>  d = dict(name=&#39;孙悟空&#39;,age=18,gender=&#39;男&#39;) 
+  print(len(d)) #3
+</code></pre></li>
+<li><p><code>in</code>  <code>not in</code>函数</p>
+<pre><code>  in 检查字典中是否包含指定的键  
+  not in 检查字典中是否不包含指定的键  
+
+  d = {&#39;name&#39;: &#39;孙悟饭&#39;, &#39;age&#39;: 18}
+  print(&#39;hello&#39; in d) #False
+</code></pre><h2 id="根据键来获取值"><a href="#根据键来获取值" class="headerlink" title="根据键来获取值"></a>根据键来获取值</h2><p>  通过[]来获取</p>
+<pre><code>      语法：
+          d[key]   
+</code></pre></li>
+</ul>
+<p>通过[]来获取值时，如果键不存在，会抛出异常 KeyError</p>
+<pre><code>d = dict(name=&#39;孙悟空&#39;,age=18,gender=&#39;男&#39;) 
+print(d[&#39;sex&#39;])#KeyError: &#39;sex&#39;
+</code></pre><p>通过get(key[, default])获取</p>
+<pre><code>该方法可根据键来获取字典中的值 
+- 如果获取的键在字典中不存在，会返回None 
+- 也可以指定一个默认值，来作为第二个参数，这样获取不到值时将会返回默认值
+    d = {&#39;name&#39;: &#39;孙悟饭&#39;, &#39;age&#39;: 18}
+    print(d.get(&#39;name&#39;))#孙悟饭
+    print(d.get(&#39;hello&#39;,&#39;默认值&#39;))#默认值
+</code></pre><ul>
+<li><p>修改/添加</p>
+<pre><code>  d[key] = value 如果key存在则覆盖，不存在则添加
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">d = dict(name=<span class="string">'孙悟空'</span>,age=<span class="number">18</span>,gender=<span class="string">'男'</span>) </span><br><span class="line">d[<span class="string">'name'</span>] = <span class="string">'sunwukong'</span> <span class="comment"># 修改字典的key-value</span></span><br><span class="line">print(d) <span class="comment"># &#123;'name': 'sunwukong', 'age': 18, 'gender': '男'&#125;</span></span><br><span class="line">d[<span class="string">'address'</span>] = <span class="string">'花果山'</span>  <span class="comment">#向字典中添加key-value</span></span><br><span class="line">print(d) <span class="comment"># &#123;'name': 'sunwukong', 'age': 18, 'gender': '男', 'address': '花果山'&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><code>  setdefault(key[, default])  可以用来向字典中添加key-value
+      如果key已经存在于字典中，则返回key的值，不会对字典做任何操作
+      如果key不存在，返回key值，并向字典中添加这个key，并设置value
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">d = dict(name=<span class="string">'孙悟空'</span>,age=<span class="number">18</span>,gender=<span class="string">'男'</span>) </span><br><span class="line">result = d.setdefault(<span class="string">'name'</span>,<span class="string">'猪八戒'</span>)</span><br><span class="line">result = d.setdefault(<span class="string">'hello'</span>,<span class="string">'猪八戒'</span>)</span><br><span class="line">print(<span class="string">'result ='</span>,result)<span class="comment">#result = 猪八戒</span></span><br><span class="line">print(d)<span class="comment">#&#123;'name': '孙悟空', 'age': 18, 'gender': '男', 'hello': '猪八戒'&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><code>  update([other])
+      将其他的字典中的key-value添加到当前字典中
+      如果有重复的key，则后边的会替换到当前的（更新）
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dict1 = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'b'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">3</span>&#125;</span><br><span class="line">dict2 = &#123; <span class="string">'a'</span>:<span class="string">'hello'</span>,<span class="string">'b'</span>:<span class="number">4</span>,<span class="string">'e'</span>:<span class="number">5</span>,<span class="string">'f'</span>:<span class="number">6</span>&#125;</span><br><span class="line">dict1.update(dict2)</span><br><span class="line">print(dict1)<span class="comment"># &#123;'a': 'hello', 'b': 4, 'c': 3, 'e': 5, 'f': 6&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除</p>
+<pre><code>  可以使用 del 来删除字典中的 key-value
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'b'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">del</span> d[<span class="string">'a'</span>]</span><br><span class="line"><span class="keyword">del</span> d[<span class="string">'b'</span>]</span><br><span class="line">print(d)</span><br><span class="line"><span class="comment"># &#123;'c': 3&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><code>  popitem()
+  随机删除字典中的一个键值对，一般都会删除最后一个键值对  
+  - 删除之后，它会将删除的key-value作为返回值返回
+  - 返回的是一个元组，元组中有两个元素，第一个元素是删除的key，第二个是删除的value
+  - 当使用popitem()删除一个空字典时，会抛出异常 KeyError:&#39;popitem(): dictionary is empty&#39;   
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'b'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">3</span>&#125;</span><br><span class="line">result = d.popitem()</span><br><span class="line">print(result)</span><br><span class="line"><span class="comment"># ('c', 3)</span></span><br></pre></td></tr></table></figure>
+<pre><code>  pop(key[, default])
+  根据key删除字典中的key-value 会将被删除的value返回！
+  - 如果删除不存在的key，会抛出异常
+  - 如果指定了默认值，再删除不存在的key时，不会报错，而是直接返回默认值
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">d = dict(name=<span class="string">'孙悟空'</span>,age=<span class="number">18</span>,gender=<span class="string">'男'</span>) </span><br><span class="line">result = d.pop(<span class="string">'none'</span>,<span class="string">'默认值'</span>) </span><br><span class="line">print(result) <span class="comment">#默认值</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">    clear()用来清空字典</span><br><span class="line">```py</span><br><span class="line">d = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'b'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">3</span>&#125;</span><br><span class="line">result = d.clear()</span><br><span class="line">print(result)<span class="comment"># None</span></span><br><span class="line">print(d) <span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>复制</p>
+<pre><code>  copy(),该方法用于对字典进行浅复制  
+  - 复制以后的对象，和原对象是独立，修改一个不会影响另一个。
+  - 注意，浅复制会简单复制对象内部的值，如果值也是一个可变对象，这个可变对象不会被复制。
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'b'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">3</span>&#125;</span><br><span class="line">d2 = d.copy()</span><br><span class="line">d[<span class="string">'a'</span>] = <span class="number">100</span></span><br><span class="line">print(<span class="string">'d = '</span>,d , id(d))<span class="comment"># d =  &#123;'a': 100, 'b': 2, 'c': 3&#125; 2900267977968</span></span><br><span class="line">print(<span class="string">'d2 = '</span>,d2 , id(d2))<span class="comment"># d2 =  &#123;'a': 1, 'b': 2, 'c': 3&#125; 2900267978040</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">'a'</span>:&#123;<span class="string">'name'</span>:<span class="string">'孙悟空'</span>,<span class="string">'age'</span>:<span class="number">18</span>&#125;,<span class="string">'b'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">3</span>&#125;</span><br><span class="line">d2 = d.copy()</span><br><span class="line">d2[<span class="string">'a'</span>][<span class="string">'name'</span>] = <span class="string">'猪八戒'</span></span><br><span class="line">print(<span class="string">'d = '</span>,d , id(d)) <span class="comment"># d =  &#123;'a': &#123;'name': '猪八戒', 'age': 18&#125;, 'b': 2, 'c': 3&#125; 2900268821672</span></span><br><span class="line">print(<span class="string">'d2 = '</span>,d2 , id(d2))<span class="comment"># d2 =  &#123;'a': &#123;'name': '猪八戒', 'age': 18&#125;, 'b': 2, 'c': 3&#125; 2900267977968</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>遍历</p>
+<pre><code>  keys() 该方法会返回字典的所有的key  
+  该方法会返回一个序列，序列中保存有字典所有的键  
+</code></pre><p>  1、通过遍历<code>keys()</code>来获取所有的键</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">'name'</span>:<span class="string">'孙悟空'</span>,<span class="string">'age'</span>:<span class="number">18</span>,<span class="string">'gender'</span>:<span class="string">'男'</span>&#125;</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> d.keys() :</span><br><span class="line">    print(k , d[k])</span><br><span class="line"><span class="comment"># name 孙悟空</span></span><br><span class="line"><span class="comment"># age 18</span></span><br><span class="line"><span class="comment"># gender 男</span></span><br></pre></td></tr></table></figure>
+<pre><code>  values()  该方法会返回字典的所有的value   
+  该方法会返回一个序列，序列中保存有字典所有的值
+</code></pre><p>  2、通过遍历values()来获取所有的值</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">'name'</span>:<span class="string">'孙悟空'</span>,<span class="string">'age'</span>:<span class="number">18</span>,<span class="string">'gender'</span>:<span class="string">'男'</span>&#125;</span><br><span class="line">print(d.values())</span><br><span class="line"><span class="comment">#  dict_values(['孙悟空', 18, '男']) </span></span><br><span class="line"><span class="keyword">for</span> v <span class="keyword">in</span> d.values():</span><br><span class="line">    print(v)</span><br><span class="line"><span class="comment"># 孙悟空</span></span><br><span class="line"><span class="comment"># 18</span></span><br><span class="line"><span class="comment"># 男</span></span><br></pre></td></tr></table></figure>
+<pre><code>  items()  该方法会返回字典中所有的项    
+  它会返回一个序列，序列中包含有双值子序列，双值分别是，字典中的key和value 
+</code></pre>  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(d.items())</span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> d.items() :</span><br><span class="line">    print(k , <span class="string">'='</span> , v)</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>IF
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zxh4well.github.io/2019/12/09/PY7字典/" title="PY之字典">https://zxh4well.github.io/2019/12/09/PY7字典/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python基础/" rel="tag"><i class="fa fa-tag"></i> Python基础</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/25/PY6元组/" rel="next" title="PY之元组">
+                  <i class="fa fa-chevron-left"></i> PY之元组
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/12/09/PY8集合/" rel="prev" title="PY之集合">
+                  PY之集合 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字典dict"><span class="nav-number">1.</span> <span class="nav-text">字典dict</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#根据键来获取值"><span class="nav-number">1.1.</span> <span class="nav-text">根据键来获取值</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="IF"
+    src="/images/TP.jpg">
+  <p class="site-author-name" itemprop="name">IF</p>
+  <div class="site-description" itemprop="description">心之所向 素履以往</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:811226051@qq.com" title="E-Mail &rarr; mailto:811226051@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dear zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+
+
+<!--在上下两段code中添加了注释，修改了尾页面显示-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

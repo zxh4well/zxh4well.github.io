@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_Bart_Simpson_Skate_32px.net.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_Bart_Simpson_Skate_16px.net.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|kaiti:300,300italic,400,400italic,700,700italic|Amita:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="函数函数是Python中具备某一功能的工具，也一个对象。     函数可以用来保存一些可执行的代码，并且可以在需要时， 对这些语句进行多次的调用，定义函数一般都是要实现某种功能。  函数具备有参数，在定义函数时，可以在函数名后的()中定义数量不等的形参，多个形参之间使用,隔开。     1、函数的参数分为形参和实参两类：         - 形参（形式参数），定义形参就相当于在函数内部声明了变量，">
+<meta name="keywords" content="Python基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PY之函数">
+<meta property="og:url" content="https://zxh4well.github.io/2019/12/31/PY10函数/index.html">
+<meta property="og:site_name" content="安好">
+<meta property="og:description" content="函数函数是Python中具备某一功能的工具，也一个对象。     函数可以用来保存一些可执行的代码，并且可以在需要时， 对这些语句进行多次的调用，定义函数一般都是要实现某种功能。  函数具备有参数，在定义函数时，可以在函数名后的()中定义数量不等的形参，多个形参之间使用,隔开。     1、函数的参数分为形参和实参两类：         - 形参（形式参数），定义形参就相当于在函数内部声明了变量，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2020/02/08/x17yWroDme5aN3M.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/08/x5r1BKIkDJHVoG8.png">
+<meta property="og:updated_time" content="2020-03-01T11:22:44.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PY之函数">
+<meta name="twitter:description" content="函数函数是Python中具备某一功能的工具，也一个对象。     函数可以用来保存一些可执行的代码，并且可以在需要时， 对这些语句进行多次的调用，定义函数一般都是要实现某种功能。  函数具备有参数，在定义函数时，可以在函数名后的()中定义数量不等的形参，多个形参之间使用,隔开。     1、函数的参数分为形参和实参两类：         - 形参（形式参数），定义形参就相当于在函数内部声明了变量，">
+<meta name="twitter:image" content="https://i.loli.net/2020/02/08/x17yWroDme5aN3M.png">
+
+<link rel="canonical" href="https://zxh4well.github.io/2019/12/31/PY10函数/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>PY之函数 | 安好</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">安好</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zxh4well.github.io/2019/12/31/PY10函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/TP.jpg">
+      <meta itemprop="name" content="IF">
+      <meta itemprop="description" content="心之所向 素履以往">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安好">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PY之函数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-31 08:04:32" itemprop="dateCreated datePublished" datetime="2019-12-31T08:04:32+08:00">2019-12-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PY/" itemprop="url" rel="index">
+                    <span itemprop="name">PY</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p>函数是Python中具备某一功能的工具，也一个对象。</p>
+<pre><code>    函数可以用来保存一些可执行的代码，并且可以在需要时，
+对这些语句进行多次的调用，定义函数一般都是要实现某种功能。 
+</code></pre><p>函数具备有参数，在定义函数时，可以在函数名后的()中定义数量不等的形参，多个形参之间使用<code>,</code>隔开。</p>
+<pre><code>    1、函数的参数分为形参和实参两类：
+        - 形参（形式参数），定义形参就相当于在函数内部声明了变量，但是并不赋值
+        - 实参（实际参数）如果函数定义时，指定了形参，那么在调用函数时也必须传递实参，
+        实参将会赋值给对应的形参，简单来说，有几个形参就得传几个实参
+    2、python中的参数不仅仅可以是值或者是变量，还可以是函数、方法等
+
+    3、参数的传递还有传值和传递地址两类（在C语言中）；而在Python中传递的是对象。
+</code></pre><h2 id="创建函数"><a href="#创建函数" class="headerlink" title="创建函数"></a>创建函数</h2><pre><code>def 函数名([形参1,形参2,...形参n]) :
+        代码块
+</code></pre><p>函数名必须要符号标识符的规范（可以包含字母、数字、下划线、但是不能以数字开头）    </p>
+<pre><code>函数中保存的代码不会立即执行，需要调用函数代码才会执行
+</code></pre><p>如何调用函数：</p>
+<pre><code>函数对象()
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建一个求和函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">function_sum</span><span class="params">(num1,num2)</span> :</span></span><br><span class="line">    print(<span class="string">'num1 + num2 = %d'</span>%(num1+num2))</span><br><span class="line"><span class="comment">#调用函数</span></span><br><span class="line">function_sum(<span class="number">100</span>,<span class="number">200</span>) <span class="comment">#num1 + num2 = 300</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h2><pre><code>函数参数的几个概念：
+        位置参数
+        默认参数
+        关键字参数
+        不定长参数
+</code></pre><h3 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h3><pre><code>位置参数就是将对应位置的实参复制给对应位置的形参，参数之间一一对应。
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义一个say_age函数：可以告诉你的年龄</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_age</span><span class="params">(name,age)</span> :</span></span><br><span class="line">    print(<span class="string">'hi!%s,you are %d years old.'</span>%(name,age))</span><br><span class="line"><span class="comment">#调用函数</span></span><br><span class="line">say_age(<span class="string">'Tim'</span>,<span class="number">18</span>)<span class="comment"># hi!Tim,you are 18 years old.</span></span><br></pre></td></tr></table></figure>
+<p>如果我们改变参数的传递顺序会出现什么情况呢？<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">say_age(<span class="number">18</span>,<span class="string">'Tim'</span>)<span class="comment"># TypeError: %d format: a number is required, not str</span></span><br></pre></td></tr></table></figure></p>
+<p>会报错，说需要一个数字，而不是str字符串，这到底是怎么回事呢?  </p>
+<p>我们在函数中打印一下name和age,之后就会明白很多。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_age</span><span class="params">(name,age)</span> :</span></span><br><span class="line">    <span class="comment">#先打印name和age</span></span><br><span class="line">    print(<span class="string">'name is'</span>,name)</span><br><span class="line">    print(<span class="string">'age is'</span>,age)</span><br><span class="line">say_age(<span class="number">18</span>,<span class="string">'Tim'</span>)<span class="comment"># name is 18 ; age is Tim</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>定义形参时，可以为形参指定默认值，指定了默认值以后，如果用户传递了参数则默认值没有任何作用，如果用户没有传递，则默认值就会生效<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adime</span><span class="params">(name=<span class="string">'Tim'</span>,age=<span class="number">18</span>,gender=<span class="string">'男'</span>)</span> :</span></span><br><span class="line">    print(<span class="string">'I am %s,%d years old,性别%s'</span> %(name,age,gender))</span><br><span class="line">adime(<span class="string">'张三'</span>,<span class="number">70</span>,<span class="string">'女'</span>) <span class="comment">#I am 张三,70 years old,性别女</span></span><br><span class="line"><span class="comment"># adime(70,'男') #TypeError: %d format: a number is required, not str</span></span><br><span class="line">adime(<span class="string">'张三'</span>,<span class="number">70</span>)<span class="comment">#I am 张三,70 years old,性别男</span></span><br><span class="line">adime(<span class="string">'张三'</span>)<span class="comment">#I am 张三,18 years old,性别男</span></span><br><span class="line">adime()<span class="comment">#I am Tim,18 years old,性别男</span></span><br></pre></td></tr></table></figure></p>
+<p>特别说一下默认参数也是需要服从位置参数的条件的，例如上面的</p>
+<pre><code>adime(70,&#39;男&#39;) #TypeError: %d format: a number is required, not str
+</code></pre><p>默认参数可以简化函数的调用，设置默认参数时，有几点要注意：</p>
+<pre><code>一是必选参数在前，默认参数在后，否则Python的解释器会报错（思考一下为什么默认参数不能放在必选参数前面）；
+
+二是如何设置默认参数。
+                    当函数有多个参数时，把变化大的参数放前面，
+                    变化小的参数放后面，变化小的参数就可以作为默认参数。
+
+
+使用默认参数有什么好处？最大的好处是能降低调用函数的难度。
+   - 默认参数降低了函数调用的难度，而一旦需要更复杂的调用时，又可以传递更多的参数来实现。
+   - 无论是简单调用还是复杂调用，函数只需要定义一个。有多个默认参数时，调用的时候，
+既可以按顺序提供默认参数，也可以不按顺序提供部分默认参数。当不按顺序提供部分默认参
+数时，需要把参数名写上。这就涉及到了另一个问题——关键字参数。
+</code></pre><p>⚠ 定义默认参数要牢记一点：默认参数必须指向不变对象！</p>
+<pre><code>因为不变对象一旦创建，对象内部的数据就不能修改，这样就减少了由于修改数据导致的错误。
+此外，由于对象不变，多任务环境下同时读取对象不需要加锁，同时读一点问题都没有。我们
+在编写程序时，如果可以设计一个不变对象，那就尽量设计成不变对象。
+</code></pre><h3 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h3><p>关键字参数可以不按照形参定义的顺序去传递，而直接根据参数名去传递参数。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">people</span><span class="params">(name,age,gender)</span>:</span></span><br><span class="line">    print(name)</span><br><span class="line">    print(age)</span><br><span class="line">    print(gender)</span><br><span class="line"></span><br><span class="line">people(name=<span class="string">'Danile'</span>,gender=<span class="string">'女'</span>,age=<span class="number">18</span>)</span><br><span class="line"><span class="comment"># Danile</span></span><br><span class="line"><span class="comment"># 18</span></span><br><span class="line"><span class="comment"># 女</span></span><br></pre></td></tr></table></figure></p>
+<p>默认和关键字参数可以混合使用<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">people</span><span class="params">(name=<span class="string">'Tim'</span>,age=<span class="number">40</span>,gender=<span class="string">'男'</span>)</span>:</span></span><br><span class="line">    print(name)</span><br><span class="line">    print(age)</span><br><span class="line">    print(gender)</span><br><span class="line"></span><br><span class="line">people(age=<span class="number">10</span>)</span><br><span class="line"><span class="comment"># Tim</span></span><br><span class="line"><span class="comment"># 10</span></span><br><span class="line"><span class="comment"># 男</span></span><br></pre></td></tr></table></figure></p>
+<p>位置参数和关键字参数可以混合使用，混合使用关键字和位置参数时，必须将位置参数写到前面。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">people</span><span class="params">(name,age,gender=<span class="string">'男'</span>,school=<span class="string">'midle'</span>)</span>:</span></span><br><span class="line">    print(name,age,gender,school)</span><br><span class="line"></span><br><span class="line">people(<span class="string">'小明'</span>,<span class="number">18</span>,school=<span class="string">'小学'</span>)<span class="comment">#小明 18 男 小学</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="不定长参数"><a href="#不定长参数" class="headerlink" title="不定长参数"></a>不定长参数</h3><p>不定长参数又称为可变参数，在Python函数中，顾名思义，可变参数就是传入的参数个数是可变的，可以是1个、2个到任意个，还可以是0个。</p>
+<pre><code>在定义函数时，可以在形参前边加上一个*，这样这个形参将会获取到所有的实参；并且将会将所有的实参保存到一个元组中（装包）
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(*num)</span> :</span></span><br><span class="line">    print(num) <span class="comment">#(1, 2, 3, 4, 5, 6, 7)</span></span><br><span class="line">    result = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> num :</span><br><span class="line">        result += i</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">nums = sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line">print(nums) <span class="comment">#28</span></span><br></pre></td></tr></table></figure>
+<p>一次传参过程中，可变参数（带星号的形参只能有一个）可以和其他参数配合使用<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一个参数给a，第二个参数给b，剩下的都保存到c的元组中</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">function</span><span class="params">(a,b,*c)</span>:</span></span><br><span class="line">    print(<span class="string">'a ='</span>,a)</span><br><span class="line">    print(<span class="string">'b ='</span>,b)</span><br><span class="line">    print(<span class="string">'c ='</span>,c)</span><br><span class="line"></span><br><span class="line">function(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line"><span class="comment"># a = 1</span></span><br><span class="line"><span class="comment"># b = 2</span></span><br><span class="line"><span class="comment"># c = (3, 4, 5)</span></span><br></pre></td></tr></table></figure></p>
+<p>可变参数不是必须写在最后，但是注意，带*的参数后的所有参数，必须以关键字参数的形式传递<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一个参数给a，剩下的位置参数给b的元组，c必须使用关键字参数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function</span><span class="params">(a,*b,c)</span>:</span></span><br><span class="line">    print(<span class="string">'a ='</span>,a)</span><br><span class="line">    print(<span class="string">'b ='</span>,b)</span><br><span class="line">    print(<span class="string">'c ='</span>,c)</span><br><span class="line"></span><br><span class="line">Function(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,c=<span class="number">7</span>)</span><br><span class="line"><span class="comment"># a = 1</span></span><br><span class="line"><span class="comment"># b = (2, 3, 4, 5)</span></span><br><span class="line"><span class="comment"># c = 7</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 所有的位置参数都给a，b和c必须使用关键字参数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function</span><span class="params">(*a,b,c)</span>:</span></span><br><span class="line">    print(<span class="string">'a ='</span>,a)</span><br><span class="line">    print(<span class="string">'b ='</span>,b)</span><br><span class="line">    print(<span class="string">'c ='</span>,c)</span><br><span class="line"></span><br><span class="line">Function(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,b=<span class="number">5</span>,c=<span class="number">7</span>)</span><br><span class="line">a = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">b = <span class="number">5</span></span><br><span class="line">c = <span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p>强制以关键字形式传递参数的方法<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果在形参的开头直接写一个*,则要求我们的所有的参数必须以关键字参数的形式传递</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function</span><span class="params">(*,a,b,c)</span>:</span></span><br><span class="line">    print(<span class="string">'a ='</span>,a)</span><br><span class="line">    print(<span class="string">'b ='</span>,b)</span><br><span class="line">    print(<span class="string">'c ='</span>,c)</span><br><span class="line"></span><br><span class="line">Function(a=<span class="number">5</span>,b=<span class="number">2</span>,c=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># a = 5</span></span><br><span class="line"><span class="comment"># b = 2</span></span><br><span class="line"><span class="comment"># c = 0</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p><code>*</code>形参只能接收位置参数，而不能接收关键字参数</p>
+ <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function</span><span class="params">(*a)</span>:</span></span><br><span class="line">    print(<span class="string">'a ='</span>,a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Function(a=3)# TypeError: Function() got an unexpected keyword argument 'a'</span></span><br><span class="line">Function(<span class="number">3</span>) <span class="comment">#a = (3,)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>**</code>形参可以接收其他的关键字参数，它会将这些参数统一保存到一个字典中</p>
+<p>  字典的key就是参数的名字，字典的value就是参数的值，<br>  **形参只能有一个，并且必须写在所有参数的最后</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function</span><span class="params">(b,c,**a)</span> :</span></span><br><span class="line">    print(<span class="string">'a ='</span>,a,type(a))</span><br><span class="line">    print(<span class="string">'b ='</span>,b)</span><br><span class="line">    print(<span class="string">'c ='</span>,c)</span><br><span class="line"></span><br><span class="line">Function(c=<span class="number">3</span>,b=<span class="number">4</span>,name=<span class="string">'Tim'</span>,nums=<span class="string">'1314'</span>)</span><br><span class="line"><span class="comment"># a = &#123;'name': 'Tim', 'nums': '1314'&#125; &lt;class 'dict'&gt;</span></span><br><span class="line"><span class="comment"># b = 4</span></span><br><span class="line"><span class="comment"># c = 3</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="参数的解包（拆包）"><a href="#参数的解包（拆包）" class="headerlink" title="参数的解包（拆包）"></a>参数的解包（拆包）</h3><pre><code>警告⚠ 要求序列中元素的个数必须和形参的个数的一致
+
+    解包的方法就是在序列类型的参数前添加星号。
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function</span><span class="params">(a,b,c)</span>:</span></span><br><span class="line">    print(<span class="string">'a ='</span>,a)</span><br><span class="line">    print(<span class="string">'b ='</span>,b)</span><br><span class="line">    print(<span class="string">'c ='</span>,c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个元组</span></span><br><span class="line">t = (<span class="number">5</span>，<span class="number">2</span>，<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 传递实参时，在序列类型的参数前添加星号，这样他会自动将序列中的元素依次作为参数传递</span></span><br><span class="line">Function(*t)    </span><br><span class="line"><span class="comment"># a = 5</span></span><br><span class="line"><span class="comment"># b = 2</span></span><br><span class="line"><span class="comment"># c = 0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function</span><span class="params">(a,b,c)</span>:</span></span><br><span class="line">    print(<span class="string">'a ='</span>,a)</span><br><span class="line">    print(<span class="string">'b ='</span>,b)</span><br><span class="line">    print(<span class="string">'c ='</span>,c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个字典</span></span><br><span class="line">d = &#123;<span class="string">'a'</span>:<span class="number">100</span>,<span class="string">'b'</span>:<span class="number">200</span>,<span class="string">'c'</span>:<span class="number">300</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过 **来对一个字典进行解包操作</span></span><br><span class="line">Function(**d)</span><br><span class="line"><span class="comment"># a = 100</span></span><br><span class="line"><span class="comment"># b = 200</span></span><br><span class="line"><span class="comment"># c = 300</span></span><br></pre></td></tr></table></figure>
+<p>Python的函数具有非常灵活的参数形态，既可以实现简单的调用，又可以传入非常复杂的参数。默认参数一定要用<code>不可变对象</code>，如果是可变对象，程序运行时会有逻辑错误！</p>
+<pre><code>要注意定义可变参数和关键字参数的语法：
+
+    *args是可变参数，args接收的是一个tuple；
+
+    **kw是关键字参数，kw接收的是一个dict。
+
+以及调用函数时如何传入可变参数和关键字参数的语法：
+
+可变参数既可以直接传入：func(1, 2, 3)，又可以先组装list或tuple，再通过*args传入：func(*(1, 2, 3))；
+
+关键字参数既可以直接传入：func(a=1, b=2)，又可以先组装dict，再通过**kw传入：func(**{&#39;a&#39;: 1, &#39;b&#39;: 2})。
+</code></pre><p>命名的关键字参数是为了限制调用者可以传入的参数名，同时可以提供默认值。定义命名的关键字参数在没有可变参数的情况下不要忘了写分隔符*，否则定义的将是位置参数。</p>
+<h2 id="函数的返回值"><a href="#函数的返回值" class="headerlink" title="函数的返回值"></a>函数的返回值</h2><p>返回值就是函数执行以后返回的结果，可以通过 <code>return</code> 来指定函数的返回值，return 后边跟什么值，函数就会返回什么值，return 后边可以跟任意的对象，返回值甚至可以是一个函数，如果仅仅写一个return 或者 不写return，则相当于return None ，在函数中，return语句后的代码都不会执行，return 一旦执行函数自动结束。</p>
+<pre><code>break 用来退出当前循环
+continue 用来跳过当次循环
+return 用来结束函数
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#return用来返回函数的返回值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Add_return</span><span class="params">(num1,num2,num3)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> num1*num2*num3</span><br><span class="line"></span><br><span class="line">ans = Add_return(<span class="number">5</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'ans = '</span>,ans) <span class="comment">#ans =  30</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#return的返回值可以是函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun1</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fun2</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'我是函数'</span>)</span><br><span class="line">    print(type(fun2)) <span class="comment">#&lt;class 'function'&gt;</span></span><br><span class="line">    <span class="keyword">return</span> fun2</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">ans = fun1() <span class="comment"># ans承接了fun1的返回值，fun2这个函数</span></span><br><span class="line"></span><br><span class="line">print(ans) <span class="comment"># &lt;function fun1.&lt;locals&gt;.fun2 at 0x0000026582DC6598&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ans 是是函数对象，打印ans实际是在打印函数对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#调用函数</span></span><br><span class="line">ans() <span class="comment">#我是函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ans() 是在调用函数，打印ans()实际上是在打印ans()函数的返回值 “我是函数"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#return 后的语句将不被执行</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(num1,num2,num3)</span> :</span></span><br><span class="line">    ans = <span class="number">0</span></span><br><span class="line">    ans += num1</span><br><span class="line">    ans += num2</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">    ans += num3</span><br><span class="line"></span><br><span class="line">ans = sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">print(<span class="string">'ans = 6?, NO! ans ='</span>,ans)<span class="comment"># ans = 6?, NO! ans = 3</span></span><br></pre></td></tr></table></figure>
+<h2 id="作用域与命名空间"><a href="#作用域与命名空间" class="headerlink" title="作用域与命名空间"></a>作用域与命名空间</h2><p>作用域（scope）指的是变量生效的区域</p>
+<pre><code>为了使得变量更加安全数据不易于覆盖，编译器会对变量所在的作用域进行划分，从而产生我们常说的变量划分，如局部变量和全局变量。
+</code></pre><ul>
+<li><p>全局作用域</p>
+<p>  全局作用域在程序执行时创建，在程序执行结束时销毁（垃圾回收机制），所有函数以外的区域都是全局作用域。在全局作用域中定义的变量，都属于全局变量，全局变量可以在程序的任意位置被访问</p>
+</li>
+<li><p>函数作用域</p>
+<p>  函数作用域在函数调用时创建，在调用结束时销毁。函数每调用一次就会产生一个新的函数作用域，在函数作用域中定义的变量，都是局部变量，它只能在函数内部被访问</p>
+</li>
+</ul>
+<ul>
+<li><p>变量查找</p>
+<pre><code>  当我们使用变量时，会优先在当前作用域中寻找该变量，如果有则使用。
+  如果没有则继续去上一级作用域中寻找，如果有则使用，
+  如果依然没有则继续去上一级作用域中寻找，以此类推，
+  直到找到全局作用域，依然没有找到，则会抛出异常 NameError: name &#39;a&#39; is not defined
+</code></pre></li>
+</ul>
+<p><img src="https://i.loli.net/2020/02/08/x17yWroDme5aN3M.png" alt="捕获.PNG">  </p>
+<p>从小作用域找到大的作用域,反过来则无法找到<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function</span><span class="params">()</span>:</span></span><br><span class="line">    num = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">weight = <span class="number">60</span></span><br><span class="line">height = <span class="number">170</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># print(weight) # 60</span></span><br><span class="line"><span class="comment">#全局作用域变量，我在全局中调用，可以找到</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(num)# NameError: name 'num' is not defined</span></span><br><span class="line"><span class="comment">#函数作用域变量，我在全局中调用，无法找到</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2020/02/08/x5r1BKIkDJHVoG8.png" alt="捕获.PNG"></p>
+<pre><code>如果希望在函数内部修改全局变量，则需要使用global关键字，来声明变量
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function1</span><span class="params">()</span>:</span></span><br><span class="line">a = <span class="number">10</span> <span class="comment"># 在函数中为变量赋值时，默认都是为局部变量赋值</span></span><br><span class="line">print(<span class="string">'函数内部：'</span>,<span class="string">'a ='</span>,a) <span class="comment">#函数内部： a = 10</span></span><br><span class="line">print(id(a)) <span class="comment"># 1477167056</span></span><br><span class="line"></span><br><span class="line">Function1()</span><br><span class="line">a = <span class="number">20</span></span><br><span class="line">print(<span class="string">'函数外部：'</span>,<span class="string">'a ='</span>,a) <span class="comment">#函数外部： a = 20</span></span><br><span class="line">print(id(a)) <span class="comment"># 1477167376</span></span><br><span class="line"><span class="comment"># 虽然变量名都是a但是他们的实质却是不同的：其一是在不同的作用域，其二是经验证两者的id（对象的存储位置）都是不同的</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果希望在函数内部修改全局变量，则需要使用global关键字，来声明变量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">global</span> a <span class="comment"># 声明在函数内部的使用a是全局变量，此时再去修改a时，就是在修改全局的a</span></span><br><span class="line">    a = <span class="number">520</span> <span class="comment"># 修改全局变量</span></span><br><span class="line">    print(<span class="string">'函数内部：'</span>,<span class="string">'a ='</span>,a) <span class="comment">#函数内部： a = 520</span></span><br><span class="line">    print(id(a)) <span class="comment">#2306878055536</span></span><br><span class="line"></span><br><span class="line">Function2()</span><br><span class="line"><span class="comment"># 假设a是全局的，那么不论内部外部，两次打印应该是相同的结果</span></span><br><span class="line">print(<span class="string">'函数外部：'</span>,<span class="string">'a ='</span>,a) <span class="comment">#函数外部： a = 520</span></span><br><span class="line">print(id(a)) <span class="comment">#2306878055536</span></span><br></pre></td></tr></table></figure>
+<p>命名空间（namespace）<br>命名空间指的是变量存储的位置，每一个变量都需要存储到指定的命名空间当中, 每一个作用域都会有一个它对应的命名空间。</p>
+<pre><code>全局命名空间，用来保存全局变量。
+函数命名空间，用来保存函数中的变量
+</code></pre><p>命名空间实际上就是一个字典，是一个专门用来存储变量的字典</p>
+<ul>
+<li>locals()用来获取当前作用域的命名空间</li>
+</ul>
+<p>如果在全局作用域中调用locals()则获取全局命名空间，如果在函数作用域中调用locals()则获取函数命名空间。</p>
+<pre><code>locals()的返回值是一个字典
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># locals()用来获取当前作用域的命名空间</span></span><br><span class="line"><span class="comment"># 如果在全局作用域中调用locals()则获取全局命名空间，</span></span><br><span class="line"><span class="comment"># 如果在函数作用域中调用locals()则获取函数命名空间。</span></span><br><span class="line"><span class="comment"># 返回值是一个字典</span></span><br><span class="line"><span class="comment"># globals() 函数可以用来在任意位置获取全局命名空间</span></span><br><span class="line">scope = locals() <span class="comment"># 当前命名空间——全局命名空间</span></span><br><span class="line">a = <span class="string">'Tim'</span></span><br><span class="line">b = <span class="number">325</span></span><br><span class="line">print(type(scope)) <span class="comment"># &lt;class 'dict'&gt;</span></span><br><span class="line">print(scope) <span class="comment">#输出值会很多，但先不管那么多，先来看结果</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">&#123;'scope': &#123;...&#125;, 'a': 'Tim', 'b': 325&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出中共分三项: scope  a  b</span></span><br><span class="line"><span class="string">这三项分别是我们定义的三个变量，且是全局变量</span></span><br><span class="line"><span class="string">'scope': &#123;...&#125; 表明scope类型是字典，所以证明了locals()返回值是字典无误</span></span><br><span class="line"><span class="string"> 'a': 'Tim' 和 'b': 325 都是我们自己定义的，所以locals()的功能就是获取当前作用域的命名空间</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 既然scope是一个字典，那么我们能够以操作字典的方式来调用scope呢？ 答案是： 当然可以</span></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line">print(a)</span><br><span class="line">print(scope[<span class="string">'a'</span>])</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"># Tim</span></span><br><span class="line"><span class="string"># Tim</span></span><br><span class="line"><span class="string">这两者的效果是一样的，反向验证了locals的功能</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 向scope中添加一个key-value</span></span><br><span class="line">scope[<span class="string">'c'</span>] = <span class="string">'LOVE'</span> <span class="comment"># 向字典中添加key-value就相当于在全局中创建了一个变量（一般不建议这么做）</span></span><br><span class="line">print(c) <span class="comment">#LOVE</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 同理locals()也可以获取到函数内部的命名空间</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Func1</span><span class="params">()</span>:</span></span><br><span class="line">    A = <span class="string">'function1'</span></span><br><span class="line">    scope = locals() <span class="comment"># 在函数内部调用locals()会获取到函数的命名空间</span></span><br><span class="line">    <span class="comment"># 可以通过scope来操作函数的命名空间，但是也是不建议这么做</span></span><br><span class="line">    print(<span class="string">'Func1`s  scope:'</span>,scope)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Func2</span><span class="params">()</span>:</span></span><br><span class="line">        B = <span class="string">'function2'</span></span><br><span class="line">        scope = locals()</span><br><span class="line">        print(<span class="string">'Func2`s  scope:'</span>,scope)</span><br><span class="line">        global_scope = globals()</span><br><span class="line">        <span class="keyword">return</span> global_scope</span><br><span class="line">    <span class="keyword">return</span> Func2</span><br><span class="line"></span><br><span class="line">ans_F1 = Func1()<span class="comment"># Func1`s  scope: &#123;'A': 'function1'&#125;</span></span><br><span class="line">ans_F2 = ans_F1()<span class="comment"># Func2`s  scope: &#123;'B': 'function2'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># globals() 函数可以用来在任意位置获取全局命名空间</span></span><br><span class="line">print(<span class="string">'The globals() answer:'</span>,ans_F2)</span><br><span class="line"><span class="comment"># The globals() answer:&#123; 'Func1': &lt;function Func1 at 0x0000025F64173E18&gt;, </span></span><br><span class="line"><span class="comment"># 'ans_F1': &lt;function Func1.&lt;locals&gt;.Func2 at 0x0000025F644E6598&gt;, 'ans_F2': &#123;...&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>IF
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zxh4well.github.io/2019/12/31/PY10函数/" title="PY之函数">https://zxh4well.github.io/2019/12/31/PY10函数/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python基础/" rel="tag"><i class="fa fa-tag"></i> Python基础</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/20/PY9语句/" rel="next" title="PY之语句">
+                  <i class="fa fa-chevron-left"></i> PY之语句
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/01/12/PY11高阶函数/" rel="prev" title="PY之高阶函数">
+                  PY之高阶函数 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建函数"><span class="nav-number">1.1.</span> <span class="nav-text">创建函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的参数"><span class="nav-number">1.2.</span> <span class="nav-text">函数的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#位置参数"><span class="nav-number">1.2.1.</span> <span class="nav-text">位置参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认参数"><span class="nav-number">1.2.2.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键字参数"><span class="nav-number">1.2.3.</span> <span class="nav-text">关键字参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不定长参数"><span class="nav-number">1.2.4.</span> <span class="nav-text">不定长参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数的解包（拆包）"><span class="nav-number">1.2.5.</span> <span class="nav-text">参数的解包（拆包）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的返回值"><span class="nav-number">1.3.</span> <span class="nav-text">函数的返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域与命名空间"><span class="nav-number">1.4.</span> <span class="nav-text">作用域与命名空间</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="IF"
+    src="/images/TP.jpg">
+  <p class="site-author-name" itemprop="name">IF</p>
+  <div class="site-description" itemprop="description">心之所向 素履以往</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:811226051@qq.com" title="E-Mail &rarr; mailto:811226051@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dear zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+
+
+<!--在上下两段code中添加了注释，修改了尾页面显示-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

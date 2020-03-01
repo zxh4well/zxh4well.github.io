@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_Bart_Simpson_Skate_32px.net.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_Bart_Simpson_Skate_16px.net.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|kaiti:300,300italic,400,400italic,700,700italic|Amita:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="对象?面向对象?类?什么是对象？什么是面向对象？什么是类？不要着急，本章我们就来说一下什么是对象，什么是类，又如何面向对象编程。 面向对象编程Python是一门面向对象的语言,同时也提供了函数式编程的方法，可以继续使用面向过程式编程的方法，这是毫无问题的。但是却失去了python本来的意义，既然面向对象，那我们就该使用面向对象的思想————简单理解就是语言中的所有操作都是通过对象来进行的，通过抽象">
+<meta name="keywords" content="Python进阶">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PY面向对象">
+<meta property="og:url" content="https://zxh4well.github.io/2020/01/25/PY13面向对象/index.html">
+<meta property="og:site_name" content="安好">
+<meta property="og:description" content="对象?面向对象?类?什么是对象？什么是面向对象？什么是类？不要着急，本章我们就来说一下什么是对象，什么是类，又如何面向对象编程。 面向对象编程Python是一门面向对象的语言,同时也提供了函数式编程的方法，可以继续使用面向过程式编程的方法，这是毫无问题的。但是却失去了python本来的意义，既然面向对象，那我们就该使用面向对象的思想————简单理解就是语言中的所有操作都是通过对象来进行的，通过抽象">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2020/02/23/clVbpdwZBg248nU.png">
+<meta property="og:image" content="http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-10-09-040408.png">
+<meta property="og:updated_time" content="2020-03-01T11:25:53.245Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PY面向对象">
+<meta name="twitter:description" content="对象?面向对象?类?什么是对象？什么是面向对象？什么是类？不要着急，本章我们就来说一下什么是对象，什么是类，又如何面向对象编程。 面向对象编程Python是一门面向对象的语言,同时也提供了函数式编程的方法，可以继续使用面向过程式编程的方法，这是毫无问题的。但是却失去了python本来的意义，既然面向对象，那我们就该使用面向对象的思想————简单理解就是语言中的所有操作都是通过对象来进行的，通过抽象">
+<meta name="twitter:image" content="https://i.loli.net/2020/02/23/clVbpdwZBg248nU.png">
+
+<link rel="canonical" href="https://zxh4well.github.io/2020/01/25/PY13面向对象/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>PY面向对象 | 安好</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">安好</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zxh4well.github.io/2020/01/25/PY13面向对象/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/TP.jpg">
+      <meta itemprop="name" content="IF">
+      <meta itemprop="description" content="心之所向 素履以往">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安好">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PY面向对象
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-25 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-25T00:00:00+08:00">2020-01-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PY/" itemprop="url" rel="index">
+                    <span itemprop="name">PY</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="对象-面向对象-类"><a href="#对象-面向对象-类" class="headerlink" title="对象?面向对象?类?"></a>对象?面向对象?类?</h1><p>什么是对象？什么是面向对象？<br>什么是类？<br>不要着急，本章我们就来说一下什么是对象，什么是类，又如何面向对象编程。</p>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>Python是一门面向对象的语言,同时也提供了函数式编程的方法，可以继续使用面向过程式编程的方法，这是毫无问题的。但是却失去了python本来的意义，既然面向对象，那我们就该使用面向对象的思想————简单理解就是语言中的所有操作都是通过对象来进行的，通过抽象、分类的思维方式将生活中的实际问题转化为数学对象，通过操作对象来完成任务目标。面向对象其实质是一种思维方式，不再以面向过程的编程方法将关注点放在任务完成的步骤上，而是放在为完成任务所需要的对象（参与者）上，通过对对象的操作来完成既定目标。</p>
+<pre><code>请牢记：
+        面向对象编程，重要的不是步骤，而是对象。
+</code></pre><p>面向对象编程的优点是：易阅读，易维护，易复用；缺点是：过于抽象，难于编写。</p>
+<ul>
+<li><p>什么是对象：（三种定义）</p>
+<pre><code>  1、对象是内存中专门用来存储数据的一块区域。
+  2、对象是人们要进行研究的任何事物，它不仅能表示具体的事物，还能表示抽象的规则、计划或事件。
+     对象具有状态，一个对象用数据值来描述它的状态。对象还有操作，用于改变对象的状态，对象及其
+     操作就是对象的行为。对象实现了数据和操作的结合，使数据和操作封装于对象的统一体中。
+
+          状态：操作  ==  属性：方法
+
+  3、通过类定义的数据结构实例。
+</code></pre></li>
+<li><p>什么是类：</p>
+<pre><code>  1、类是对象的图纸；类是一个用来创建对象的对象。类是type类型的对象，定义类实际上就是定义了一个type类型的对象。
+  2、类是用来描述具有相同的属性和方法的对象的集合，它定义了该集合中每个对象所共有的属性和方法，一个对象就是一个类的实例。
+</code></pre></li>
+</ul>
+<ul>
+<li><p>什么是实例：<code>类</code>在实例化之后叫做一个<code>实例</code></p>
+<pre><code>   “类”是静态的，不占进程内存，而“实例”拥有动态内存。而在数据库中数，则代表一些程序的集合。
+
+  实例和对象基本上是同义词，它们常常可以互换使用。
+      对象代表了类的一个特定的实例。对象具有身份（identity）、类型（type）、和属性值（attribute values）3个特征。实例是对象的具体表示，操作可以作用于实例，实例可以有状态地存储操作结果。实例被用来模拟现实世界中存在的、具体的或原型的东西。
+      对象就是类的实例，所有的对象都是实例，但并不是所有的实例都是对象。例如，一个关联（UML关系中的一种）的实例不是一个对象，它只是一个实例、一个连接。我们常见的实例都是类的实例，此时二者没有区别。除了类的实例外的实例都不是对象。
+</code></pre></li>
+<li><p>什么是属性|什么是方法：属性是类中定义的变量，方法是类中定义的函数</p>
+</li>
+</ul>
+<h2 id="定义一个类"><a href="#定义一个类" class="headerlink" title="定义一个类"></a>定义一个类</h2><p>类和对象都是对现实生活中的事物或程序中的内容的抽象</p>
+<pre><code>实际上所有的事物都由两部分构成：
+    1.数据（属性）
+    2.行为（方法）
+</code></pre><p>在类的代码块中，我们可以定义变量和函数</p>
+<pre><code>变量会成为该类实例的公共属性，所有该类实例都可以通过    对象.属性名    的形式访问
+函数会成为该类实例的公共方法，所有该类实例都可以通过    对象.方法名()  的形式调用方法
+</code></pre><p>注意：</p>
+<pre><code>方法调用时，第一个参数由解析器自动传递，所以定义方法时，至少要定义一个形参！这点会在后面着重讲解。
+</code></pre><p>问：实例为什么能访问到类中的属性和方法</p>
+<pre><code>类中定义的属性和方法都是公共的，任何该类实例都可以访问
+
+    属性和方法查找的流程：
+        当我们调用一个对象的属性时，解析器会先在当前对象中寻找是否含有该属性，
+            如果有，则直接返回当前的对象的属性值；
+            如果没有，则去当前对象的类对象中去寻找，如果有则返回类对象的属性值；
+            如果类对象中依然没有，则报错！
+</code></pre><p>类对象和实例对象中都可以保存属性（方法）</p>
+<pre><code>    如果这个属性（方法）是所有的实例共享的，则应该将其保存到类对象中；
+    如果这个属性（方法）是某个实例独有，则应该保存到实例对象中。    
+
+    一般情况下，属性保存到实例对象中，而方法需要保存到类对象中。   
+</code></pre><p>Python中使用<code>class</code>关键字来定义类</p>
+<pre><code>语法：
+    class 类名([父类]) :
+
+        公共的属性...
+
+        # 对象的初始化方法
+        def __init__(self,...):
+            ...
+
+        # 其他的方法    
+        def method_1(self,...):
+            ...
+
+        def method_2(self,...):
+            ...
+
+        ...    
+</code></pre><p><img src="https://i.loli.net/2020/02/23/clVbpdwZBg248nU.png" alt="捕获.PNG"></p>
+<p>方法中<code>self</code>参数详解：<br>类中的方法每次被调用时，解析器都会默认传递一个实参（不管你定义了参数与否），且该参数总是第一个被传递。该参数其实就是调用方法的对象本身，一般我们都会将该参数命名为<code>self</code>。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span><span class="comment"># 类定义的时候可以不带父类，建议类名大写</span></span><br><span class="line">    name = <span class="string">'snake'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(self)</span>:</span> <span class="comment"># self是必须的参数</span></span><br><span class="line">        print(<span class="string">'你好!'</span>)</span><br><span class="line"></span><br><span class="line">p1 = Person() <span class="comment"># 如果是p1调的，则第一个参数就是p1对象</span></span><br><span class="line">p2 = Person() <span class="comment"># 如果是p2调的，则第一个参数就是p2对象</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="使用类创建对象"><a href="#使用类创建对象" class="headerlink" title="使用类创建对象"></a>使用类创建对象</h2><p>我们说过对象是类的实例，只定义类而不是用的话是毫无意义的，使用类的方法就是利用类来创建对象————类的实例化。</p>
+<ul>
+<li><p>类的实例化：通常把用类创建对象的过程称为实例化。</p>
+<pre><code>  一般而言，类的实例化和直接使用类的格式是不一样的。
+</code></pre></li>
+</ul>
+<p>类的实例化相当于模板之余产品的概念，类是一个模板，类的实例化就相当于将模板制作称为一个个产品（对象）。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myclass</span><span class="params">()</span>:</span> </span><br><span class="line">    <span class="keyword">pass</span>         <span class="comment"># 定义了一个空的类</span></span><br><span class="line"></span><br><span class="line">mc = MyClass() <span class="comment"># mc就是通过MyClass创建的对象，mc是MyClass的实例</span></span><br></pre></td></tr></table></figure></p>
+<p>Python中有内置对象，此前的字符串、数字、数组、字典都是内置对象，都具有其相应的类。譬如说 int() float() bool() str() list() dict()。当我们调用数组的length方法的时候，实际上就是在调用该类型的内置函数。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个类的实例</span></span><br><span class="line">a = int(<span class="number">10</span>) <span class="comment"># 创建一个int类的实例</span></span><br><span class="line">b = str(<span class="string">'hello'</span>) <span class="comment"># 创建一个str类的实例</span></span><br><span class="line"><span class="comment"># 10 &lt;class 'int'&gt;</span></span><br><span class="line"><span class="comment"># hello &lt;class 'str'&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>创建对象的一般流程：</p>
+<pre><code>1.创建一个变量
+2.在内存中创建一个新对象
+3.将对象的id赋值给变量
+</code></pre><p>对于该流程因该要很熟悉，且要明白，在Python中通常第一二三步是同步完成的，如上面的<code>mc = Myclass()</code>，如果是在java语言中第二步的体现就是<code>new</code>一个新方法，<code>mc = new Myclass()</code>。  </p>
+<p>提问？一个类可以创建多个对象吗？类与对象之间有什么关系呢？</p>
+<pre><code>先答：类可以创建多个对象.
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个Dog类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">()</span>:</span><span class="comment"># 父类先不指定，该处涉及到了继承，先不做解释</span></span><br><span class="line">    name = <span class="string">'blank'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'wang wang!'</span>)</span><br><span class="line"><span class="comment"># 创建一个名叫二哈的Dog对象    </span></span><br><span class="line">erha =  Dog()</span><br><span class="line"><span class="comment"># 创建一个名叫金毛的Dog对象</span></span><br><span class="line">Jmao = Dog()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询erha是否等于金毛</span></span><br><span class="line">print(erha <span class="keyword">is</span> Jmao) <span class="comment"># False</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">得到的答案是False，说明erha和Jmao不是同一个对象，那我们在查证一下erha和Jmao的id呢?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Jmao : 2827631948296 &lt;class '__main__.Dog'&gt;</span></span><br><span class="line"><span class="string">erha : 2827631948520 &lt;class '__main__.Dog'&gt;</span></span><br><span class="line"><span class="string">由上面的例证我们可以的出，Jmao和erha确实不是同一个对象，同时，他们确实是同一个类的实例.</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(id(Jmao),type(Jmao))</span><br><span class="line">print(id(erha),type(erha))</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">提问？</span></span><br><span class="line"><span class="string">    Jmao，与erha中的变量是否是一样的呢？按理来说，同一个类的对象因该是一样的。</span></span><br><span class="line"><span class="string">原因：</span></span><br><span class="line"><span class="string">    因为对象就是根据类复制出来的。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">测试结果</span></span><br><span class="line"><span class="string">print(Jmao.name) # blank</span></span><br><span class="line"><span class="string">print(erha.name) # blank</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line"></span><br><span class="line">print(Jmao.name)</span><br><span class="line">print(erha.name)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">补充说明：</span></span><br><span class="line"><span class="string">对象的属性的调用方法是：   对象名.属性名</span></span><br><span class="line"><span class="string">那对象的方法的调用方法：   对象名.方法名()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">erha.run() <span class="comment"># wang wang</span></span><br></pre></td></tr></table></figure>
+<p>类与对象的关系： 一个类可以创建多个对象，多个对象可以共享一个类。类中的属性和方法对于<code>使用该类创建的</code>所有对象都是通用的。类中的属性方法改变，所有的实例对象中的属性方法会发生对应的改变，而一个实例对象中的类和方法的改变并不会影响其他的对象，也不会对类造成改变。<br><img src="http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-10-09-040408.png" alt></p>
+<p>提问？ 如何在一个类的方法中使用类的属性？<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个自我介绍的类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">()</span>:</span></span><br><span class="line">    name = <span class="string">'tom'</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'Hello! My name is %s.'</span> %self.name)</span><br><span class="line"></span><br><span class="line">P = People()</span><br><span class="line">p.say() <span class="comment"># Hello! My name is tom.</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="类中属性和方法的修改"><a href="#类中属性和方法的修改" class="headerlink" title="类中属性和方法的修改"></a>类中属性和方法的修改</h3><p>类中的方法称为类方法，实例对象中的方法称为实例方法（对象方法），实例方法中无法修改。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 创建一个类</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say_hello</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'Hello! My name is Peter.'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个对象</span></span><br><span class="line">p = People()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个用于修改类中对象的函数，当然，参数应该与原方法相一致</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">    print(<span class="string">'I am runing!'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们使用了 类.原始函数 = 新函数 就完了类的重写</span></span><br><span class="line">People.say_hello = run</span><br><span class="line"></span><br><span class="line"><span class="comment"># 要注意的是，这里的赋值是在替换方法，不是调用函数。所以是不能加上括号的，也就是类.原始函数() = 新函数()这个写法是不对的。</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">实例方法改变了，类方法会改变吗？</span></span><br><span class="line"><span class="string">答案是不会，所以我们最好不要想着去修改实例的方法。</span></span><br><span class="line"><span class="string">p.say_hello = run </span></span><br><span class="line"><span class="string">p.say_hello() # TypeError: run() missing 1 required positional argument: 'self'</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们因该调用的还是类中原来的方法名，而不是新定义的函数名。因为我们做了赋值，现在的`run`就是say_hello。最好不要想要调用重写的方法。</span></span><br><span class="line"><span class="comment"># p.run() # AttributeError: 'People' object has no attribute 'run'</span></span><br><span class="line"></span><br><span class="line">p.say_hello() <span class="comment"># I am runing!</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="初始化函数-init-self"><a href="#初始化函数-init-self" class="headerlink" title="初始化函数__init__(self)"></a>初始化函数<code>__init__(self)</code></h2><p>初始化函数又称为构造函数、或者是魔术方法。这是在类中定义的一些特殊方法，特殊方法都是以<strong>开头，以</strong>结尾的方法，特殊方法不需要我们自己调用，不要尝试去调用特殊方法，特殊方法将会在特殊的时刻自动调用。</p>
+<pre><code>学习特殊方法我们需要了解的就是：
+                                1.特殊方法什么时候调用
+                                2.特殊方法有什么作用
+1、什么时候调用
+    特殊方法在我们将对象的id赋值给变量之前调用
+    整套流程：
+        1.创建一个变量
+        2.在内存中创建一个新对象
+        3.__init__(self)方法执行
+        4.将对象的id赋值给变量
+
+2、有什么作用
+    每一个魔术方法都有他独特的作用，都是设计来优化编程体验的。
+</code></pre><p>如果我们需要了解更多，请查看<a href="https://docs.python.org/zh-cn/3/reference/datamodel.html#special-method-names" target="_blank" rel="noopener">Python Docs</a></p>
+<p><code>作用</code>：init会在对象创建以后立刻开始执行，可以用来向新创建的对象中初始化属性，调用类创建对象时，类后边的所有参数都会依次传递到init()中。</p>
+<pre><code>假设现在我们定义的人这个类都具有名字这个属性，并且每一个对象中的name属性基本上都是不同，我们就可以使用init来给所有对象赋值：
+
+    之前我们是将name属性在定义为对象以后，手动添加到对象中，这种方式很容易出现错误。
+    我们希望，在创建对象时，必须设置name属性，如果不设置对象将无法创建，并且属性的创建应该是自动完成
+</code></pre><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="comment"># print(self)</span></span><br><span class="line">        <span class="comment"># 通过self向新建的对象中初始化属性</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'你好，我是%s'</span>%self.name)</span><br><span class="line"></span><br><span class="line">p1 = Person(<span class="string">'张三'</span>)</span><br><span class="line"></span><br><span class="line">print(p1.name)<span class="comment"># 张三</span></span><br><span class="line">p1.say()<span class="comment"># 你好，我是张三</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>IF
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zxh4well.github.io/2020/01/25/PY13面向对象/" title="PY面向对象">https://zxh4well.github.io/2020/01/25/PY13面向对象/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python进阶/" rel="tag"><i class="fa fa-tag"></i> Python进阶</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/01/17/PY12变量2.0/" rel="next" title="PY变量2.0">
+                  <i class="fa fa-chevron-left"></i> PY变量2.0
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/02/07/PY14三特性/" rel="prev" title="面向对象三特性">
+                  面向对象三特性 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对象-面向对象-类"><span class="nav-number">1.</span> <span class="nav-text">对象?面向对象?类?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象编程"><span class="nav-number">1.1.</span> <span class="nav-text">面向对象编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义一个类"><span class="nav-number">1.2.</span> <span class="nav-text">定义一个类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用类创建对象"><span class="nav-number">1.3.</span> <span class="nav-text">使用类创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类中属性和方法的修改"><span class="nav-number">1.3.1.</span> <span class="nav-text">类中属性和方法的修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化函数-init-self"><span class="nav-number">1.4.</span> <span class="nav-text">初始化函数__init__(self)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="IF"
+    src="/images/TP.jpg">
+  <p class="site-author-name" itemprop="name">IF</p>
+  <div class="site-description" itemprop="description">心之所向 素履以往</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:811226051@qq.com" title="E-Mail &rarr; mailto:811226051@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dear zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+
+
+<!--在上下两段code中添加了注释，修改了尾页面显示-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
