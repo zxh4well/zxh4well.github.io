@@ -284,14 +284,15 @@
 <input type="text">
 
 <ul>
-<li><p>谈谈属性值的<code>&quot;&quot;</code></p>
+<li><p>谈谈属性值的<code>&quot;&quot;</code>——引号</p>
 <ul>
 <li>不给属性值添加引号，在某些情况下它是被允许的，但是出错的概率会增加。</li>
 <li>双引号还是单引号？随便！单引号也是被允许的，最好统一风格。</li>
-<li>单双引号的嵌套，和很多其他语言一样。<h2 id="实体引用"><a href="#实体引用" class="headerlink" title="实体引用"></a>实体引用</h2>在HTML中，字符 <code>&lt;</code>、<code>&gt;</code>、<code>&quot;</code>、<code>&#39;</code> 和 <code>&amp;</code> 是特殊字符. 它们是HTML语法自身的一部分, 那么如何将这些字符包含进你的文本中呢, 那就必须使用字符引用 —— 表示字符的特殊编码。<br>|原义字符|等价字符引用|<br>|:———|:———|<br>|<code>&lt;</code>|<code>&amp;it;</code>|<br>|<code>&gt;</code>|<code>&amp;gt;</code>|<br>|<code>&quot;</code>|<code>&amp;quot;</code>|<br>|<code>&#39;</code>|<code>&amp;apos;</code>|<br>|<code>&amp;</code>|<code>&amp;amp;</code>|</li>
+<li>单双引号的嵌套，和很多其他语言一样。</li>
 </ul>
 </li>
 </ul>
+<h2 id="实体引用"><a href="#实体引用" class="headerlink" title="实体引用"></a>实体引用</h2><p>在HTML中，字符 <code>&lt;</code>、<code>&gt;</code>、<code>&quot;</code>、<code>&#39;</code> 和 <code>&amp;</code> 是特殊字符. 它们是HTML语法自身的一部分, 那么如何将这些字符包含进你的文本中呢, 那就必须使用字符引用 —— 表示字符的特殊编码。<br>|原义字符 |等价字符引用 |<br>|—-|—- |<br>|<code>&lt;</code>|<code>&amp;it;</code>|<br>|<code>&gt;</code>|<code>&amp;gt;</code>|<br>|<code>&quot;</code>|<code>&amp;quot;</code>|<br>|<code>&#39;</code>|<code>&amp;apos;</code>|<br>|<code>&amp;</code>|<code>&amp;amp;</code>|</p>
 <h1 id="HTML文档概览"><a href="#HTML文档概览" class="headerlink" title="HTML文档概览"></a>HTML文档概览</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>This is a HTML page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a page<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>上面是一个基本完整（所有html文档都应该包含这些）的html页面文档；HTML的单独元素是没有意义的，只有将多个元素组织起来形成一个HTML文档才能形成一个页面，就好像搭积木。</p>
 <ul>
