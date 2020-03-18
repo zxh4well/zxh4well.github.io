@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_Bart_Simpson_Skate_32px.net.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_Bart_Simpson_Skate_16px.net.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|kaiti:300,300italic,400,400italic,700,700italic|Amita:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="&amp;lt;head&amp;gt;什么是HTML的头部呢？在整个HTML文档中由&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;标签包裹的所有内容都称为HTML的头部。  HTML头部内包含的所有内容都不会在浏览器页面中显示，&amp;lt;title&amp;gt;元素包含的内容会在地址栏中显示。 &amp;lt;head&amp;gt;头部中常常会包含一些元数据（Metadata）——描述数据的数据。元数据&amp;lt;meat&amp;gt;H">
+<meta name="keywords" content="HTML基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML头部">
+<meta property="og:url" content="https://zxh4well.github.io/2020/03/17/HTML头部/index.html">
+<meta property="og:site_name" content="安好">
+<meta property="og:description" content="&amp;lt;head&amp;gt;什么是HTML的头部呢？在整个HTML文档中由&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;标签包裹的所有内容都称为HTML的头部。  HTML头部内包含的所有内容都不会在浏览器页面中显示，&amp;lt;title&amp;gt;元素包含的内容会在地址栏中显示。 &amp;lt;head&amp;gt;头部中常常会包含一些元数据（Metadata）——描述数据的数据。元数据&amp;lt;meat&amp;gt;H">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-18T11:10:26.111Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML头部">
+<meta name="twitter:description" content="&amp;lt;head&amp;gt;什么是HTML的头部呢？在整个HTML文档中由&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;标签包裹的所有内容都称为HTML的头部。  HTML头部内包含的所有内容都不会在浏览器页面中显示，&amp;lt;title&amp;gt;元素包含的内容会在地址栏中显示。 &amp;lt;head&amp;gt;头部中常常会包含一些元数据（Metadata）——描述数据的数据。元数据&amp;lt;meat&amp;gt;H">
+
+<link rel="canonical" href="https://zxh4well.github.io/2020/03/17/HTML头部/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>HTML头部 | 安好</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">安好</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zxh4well.github.io/2020/03/17/HTML头部/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/TP.jpg">
+      <meta itemprop="name" content="IF">
+      <meta itemprop="description" content="心之所向 素履以往">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安好">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML头部
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-17 16:27:21" itemprop="dateCreated datePublished" datetime="2020-03-17T16:27:21+08:00">2020-03-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="lt-head-gt"><a href="#lt-head-gt" class="headerlink" title="&lt;head&gt;"></a><code>&lt;head&gt;</code></h1><p>什么是HTML的头部呢？在整个HTML文档中由<code>&lt;head&gt;&lt;/head&gt;</code>标签包裹的所有内容都称为HTML的头部。</p>
+<ul>
+<li>HTML头部内包含的所有内容都不会在浏览器页面中显示，<code>&lt;title&gt;</code>元素包含的内容会在地址栏中显示。</li>
+<li><code>&lt;head&gt;</code>头部中常常会包含一些元数据（Metadata）——描述数据的数据。<h2 id="元数据-lt-meat-gt"><a href="#元数据-lt-meat-gt" class="headerlink" title="元数据&lt;meat&gt;"></a>元数据<code>&lt;meat&gt;</code></h2>HTML使用<code>&lt;meta&gt;</code>元素方式为一个文档添加元数据。不同种类的 <code>&lt;meta&gt;</code>元素可以被包含进页面的<code>&lt;head&gt;</code>元素中。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- 指定在该文档中被允许使用的字符集 --&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>&lt;meta&gt;</code>元素包含了name 和 content 属性：</p>
+<ul>
+<li>name 指定了meta 元素的类型； 说明该元素包含了什么类型的信息。</li>
+<li>content 指定了实际的元数据内容。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">content</span>=<span class="string">"Chris Mills"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 对定义页面的作者提供简要描述 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"The Mozilla Developer Network (MDN)"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- description被使用在搜索引擎显示的结果页中，用于描述该页面功能--&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="引用文件-lt-link-gt-lt-script-gt"><a href="#引用文件-lt-link-gt-lt-script-gt" class="headerlink" title="引用文件&lt;link&gt; &lt;script&gt;"></a>引用文件<code>&lt;link&gt;</code> <code>&lt;script&gt;</code></h2><ul>
+<li><p>网站图示（favicons）: 给网页添加自定义图标。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"shortcut icon"</span> <span class="attr">href</span>=<span class="string">"favicon.ico"</span> <span class="attr">type</span>=<span class="string">"image/x-icon"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 使用16x16像素或32x32（.ico图象），并且添加到HTML &lt;head&gt;中引用 --&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>&lt;link&gt;</code> 元素经常位于文档的头部,用于引用CSS（文档样式表）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">link rel="stylesheet" href="my-css-file.css"&gt;</span><br><span class="line"><span class="comment">&lt;!-- ，rel="stylesheet"表明这是文档的样式表，而 href包含了样式表文件的路径 --&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>&lt;script&gt;</code>元素常位于文档的<code>&lt;body&gt;</code>身体部分，用于引用Javascript文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"my-js-file.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;script&gt;元素并不是空元素，需要结束标记。可以选择将脚本放入&lt;script&gt;元素中，而不用指向外部脚本文件 --&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>将JS文件放于`&lt;/body&gt;’之前，而不是文档的头部的好处是，确保在加载脚本之前浏览器已经解析了HTML内容。</p>
+<h2 id="主语言设定"><a href="#主语言设定" class="headerlink" title="主语言设定"></a>主语言设定</h2><p>通过添加<code>lang</code>属性到HTML开始标签中来实现<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en-US"</span>&gt;</span> <span class="comment">&lt;!-- 英文 --&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh"</span>&gt;</span> <span class="comment">&lt;!-- 中文 --&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 还可以将文档的不同分段,设置成不同语言 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">lang</span>=<span class="string">"jp"</span>&gt;</span>ご飯が熱い<span class="tag">&lt;/<span class="name">span</span>&gt;</span> <span class="comment">&lt;!-- 日文 --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h1><tt>Write Time Data： 2020-03-18</tt>
+
+<p>URL（uniform resource locator）统一资源定位器，是一个定义了在网络上的位置的一个文本字符串。例如Mozilla的英文主页定位在<code>https://www.mozilla.org/en-US/</code>。URL可以指向HTML文件、文本文件、图像、文本文档、视频和音频文件以及可以在网络上保存的任何其他内容。  </p>
+<p>绝对URL和相对URL？  </p>
+<ul>
+<li>绝对URL： 指向由其在Web上的绝对位置定义的位置，包括 protocol(协议) and domain name（域名）</li>
+<li>相对URL： 指向与您链接的文件相关的位置，更像文件的路径。</li>
+<li>绝对并不比相对好，相对也不一定比绝对佳，合适的地方使用合适的方法。<h1 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h1>超链接就是一个指向其他网页或文档甚至文档指定部分，经由点击（或激活）就可以跳转到指定页面或文档部分的连接器。<h2 id="链接的解析"><a href="#链接的解析" class="headerlink" title="链接的解析"></a>链接的解析</h2></li>
+<li>链接标签<code>&lt;a&gt;</code>，包含属性<code>href</code> <code>title</code></li>
+<li>将文本转化为链接（普通链接），href属性将包含您希望链接指向的网址,使用title属性添加支持信息。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>I'm creating a link to</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://zxh4well.github.io/"</span> <span class="attr">title</span>=<span class="string">"作者的博客"</span>&gt;</span>to my blog</span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span>.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>I'm creating a link to
+<a href="https://zxh4well.github.io/" title="作者的博客">to my blog
+</a>.
+</p>
+
+<ul>
+<li><p>块级链接，你可以将一些内容转换为链接，甚至是块级元素。比如图片；</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://zxh4well.github.io/"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"image.png"</span> <span class="attr">alt</span>=<span class="string">"link to other web page"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如何返回上级目录：返回上一个目录级 使用两个英文点号表示 <code>..</code></p>
+<pre><code>  如果需要的话，你可以将这些功能的多个例子和复杂的url结合起来。
+  例如：../../../complex/path/to/my/file.html
+</code></pre></li>
+<li><p>链接到文档片段：首先必须给要链接的元素（通常为HTML元素）分配一个id属性，然后才可以链接，使用<code>#</code>链接</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"Mailing_address"</span>&gt;</span>Mailing address<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 不同文档需要标注文档名和路径 --&gt;</span></span><br><span class="line">p&gt;Want to write us a letter? Use our <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"contacts.html#Mailing_address"</span>&gt;</span>mailing address<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 同一文档，需要标注元素id --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#Mailing_address"</span>&gt;</span>company mailing address<span class="tag">&lt;/<span class="name">a</span>&gt;</span> can be found at the bottom of this page.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>download属性</code>，提供一个默认的保存文件名。</p>
+</li>
+</ul>
+<h2 id="超链接的作用"><a href="#超链接的作用" class="headerlink" title="超链接的作用"></a>超链接的作用</h2><ul>
+<li>创建一个导航栏菜单<br>通常在主页上的导航栏中会包含其他的附属网页，此时可以使用超链接（相对链接）来导航到其他网页。</li>
+<li>电子邮件链接<br>最常用的形式<code>mailto:link （链接/邮箱地址）</code>，链接简单说明收件人的电子邮件地址。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"mailto:nowhere@mozilla.org"</span>&gt;</span>Send email to nowhere<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>IF
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zxh4well.github.io/2020/03/17/HTML头部/" title="HTML头部">https://zxh4well.github.io/2020/03/17/HTML头部/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/HTML基础/" rel="tag"><i class="fa fa-tag"></i> HTML基础</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/03/17/HTML全瞻/" rel="next" title="HTML全瞻">
+                  <i class="fa fa-chevron-left"></i> HTML全瞻
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/03/17/HTML文本基础/" rel="prev" title="HTML头部">
+                  HTML头部 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-head-gt"><span class="nav-number">1.</span> <span class="nav-text">&lt;head&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#元数据-lt-meat-gt"><span class="nav-number">1.1.</span> <span class="nav-text">元数据&lt;meat&gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用文件-lt-link-gt-lt-script-gt"><span class="nav-number">1.2.</span> <span class="nav-text">引用文件&lt;link&gt; &lt;script&gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主语言设定"><span class="nav-number">1.3.</span> <span class="nav-text">主语言设定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#URL"><span class="nav-number">2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#超链接"><span class="nav-number">3.</span> <span class="nav-text">超链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#链接的解析"><span class="nav-number">3.1.</span> <span class="nav-text">链接的解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超链接的作用"><span class="nav-number">3.2.</span> <span class="nav-text">超链接的作用</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="IF"
+    src="/images/TP.jpg">
+  <p class="site-author-name" itemprop="name">IF</p>
+  <div class="site-description" itemprop="description">心之所向 素履以往</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:811226051@qq.com" title="E-Mail &rarr; mailto:811226051@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dear zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+
+
+<!--在上下两段code中添加了注释，修改了尾页面显示-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
