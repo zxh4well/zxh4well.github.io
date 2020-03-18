@@ -1144,7 +1144,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #943eff;
+  background: #1120cd;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2406,7 +2406,7 @@ hr {
   display: inline-block;
 }
 body {
-  background: url("/images/blogbk.jpg") no-repeat;
+  background: url("/images/a.jpg") no-repeat;
 /* 背景图垂直、水平均居中 */
   background-position: center center;
 /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
@@ -2417,24 +2417,21 @@ body {
   background-color: rgba(0,0,0,0.1);
   color: #000;
 }
+/*
 .sidebar {
-  background: url("/images/sidebar.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.sidebar p,
-.sidebar span,
-.sidebar a {
-  color: #e75001;
+            background:url(/images/sidebar.jpg);
+            background-size: cover;
+            background-position:center;
+            background-repeat:no-repeat;
+            p,span,a {color: rgba(231, 80, 1, 1);}
 }
 .content {
-  border-radius: 20px;
-  padding: 30px 60px 30px 60px;
-  background: rgba(255,255,255,0.8) none repeat scroll !important;
+	border-radius: 20px; //文章背景设置圆角
+	padding: 30px 60px 30px 60px;
+	background:rgba(255, 255, 255, 0.8) none repeat scroll !important;
   width: 100%;
 }
-/*
+
 
 .header {
           background: url(/images/名称.jpg)
